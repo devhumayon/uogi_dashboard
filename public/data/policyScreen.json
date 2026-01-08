@@ -1,0 +1,20 @@
+[
+  {
+    "timeOfCancellation": "Within 48 Hours",
+    "customerLossOnDeposit": 25,
+    "customerRefundOnDeposit": 75,
+    "amountHeldByUogiAdminPanel": 25
+  },
+  {
+    "timeOfCancellation": "Within 24 Hours",
+    "customerLossOnDeposit": 65,
+    "customerRefundOnDeposit": 35,
+    "amountHeldByUogiAdminPanel": 65
+  },
+  {
+    "timeOfCancellation": "Within 12 Hours",
+    "customerLossOnDeposit": 100,
+    "customerRefundOnDeposit": 0,
+    "amountHeldByUogiAdminPanel": 100
+  }
+]

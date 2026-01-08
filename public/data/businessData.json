@@ -1,0 +1,462 @@
+[
+  {
+    "id": "01",
+    "businessName": "Glow & Grace",
+    "businessEmail": "glowandgrace@gmail.com",
+    "totalService": 1504,
+    "completedService": 980,
+    "totalEarning": "£5000",
+    "totalWithdraw": "£3000",
+    "services": [
+      {
+        "title": "Brows and Lashes",
+        "image": "../images/service1.png",
+        "providerName": "Olivia Ema",
+        "providerImage": "../images/userImage1.png"
+      },
+      {
+        "title": "Facial Treatments",
+        "image": "../images/service2.png",
+        "providerName": "Olivia Ema",
+        "providerImage": "../images/userImage1.png"
+      }
+    ]
+  },
+  {
+    "id": "02",
+    "businessName": "Radiant Retreat",
+    "businessEmail": "radiantretreat@gmail.com",
+    "totalService": 2455,
+    "completedService": 1564,
+    "totalEarning": "£8000",
+    "totalWithdraw": "£4000",
+    "services": [
+      {
+        "title": "Massage Therapy",
+        "image": "../images/service3.png",
+        "providerName": "Sophia Ava",
+        "providerImage": "../images/userImage2.png"
+      },
+      {
+        "title": "Hair Styling",
+        "image": "../images/service4.png",
+        "providerName": "Sophia Ava",
+        "providerImage": "../images/userImage2.png"
+      }
+    ]
+  },
+  {
+    "id": "03",
+    "businessName": "Tranquil Touch",
+    "businessEmail": "tranquiltouch@gmail.com",
+    "totalService": 1200,
+    "completedService": 900,
+    "totalEarning": "£6000",
+    "totalWithdraw": "£2500",
+    "services": [
+      {
+        "title": "Nail Art",
+        "image": "../images/service5.png",
+        "providerName": "Emma Lily",
+        "providerImage": "../images/userImage3.png"
+      },
+      {
+        "title": "Makeup Artists",
+        "image": "../images/service6.png",
+        "providerName": "Emma Lily",
+        "providerImage": "../images/userImage3.png"
+      }
+    ]
+  },
+  {
+    "id": "04",
+    "businessName": "Heavenly Glow",
+    "businessEmail": "heavenlyglow@gmail.com",
+    "totalService": 800,
+    "completedService": 600,
+    "totalEarning": "£4500",
+    "totalWithdraw": "£2000",
+    "services": [
+      {
+        "title": "Eyebrow Shaping",
+        "image": "../images/service1.png",
+        "providerName": "Mia Sophia",
+        "providerImage": "../images/userImage4.png"
+      },
+      {
+        "title": "Facial Treatments",
+        "image": "../images/service2.png",
+        "providerName": "Mia Sophia",
+        "providerImage": "../images/userImage4.png"
+      }
+    ]
+  },
+  {
+    "id": "05",
+    "businessName": "Beauty Bliss",
+    "businessEmail": "beautybliss@gmail.com",
+    "totalService": 1020,
+    "completedService": 850,
+    "totalEarning": "£7200",
+    "totalWithdraw": "£3500",
+    "services": [
+      {
+        "title": "Hair Removal",
+        "image": "../images/service3.png",
+        "providerName": "Ava Harper",
+        "providerImage": "../images/userImage5.png"
+      },
+      {
+        "title": "Nail Care",
+        "image": "../images/service4.png",
+        "providerName": "Ava Harper",
+        "providerImage": "../images/userImage5.png"
+      }
+    ]
+  },
+  {
+    "id": "06",
+    "businessName": "Serenity Spa",
+    "businessEmail": "serenityspa@gmail.com",
+    "totalService": 1600,
+    "completedService": 1100,
+    "totalEarning": "£9000",
+    "totalWithdraw": "£4000",
+    "services": [
+      {
+        "title": "Facial Treatments",
+        "image": "../images/service5.png",
+        "providerName": "Sophia Olivia",
+        "providerImage": "../images/userImage6.png"
+      },
+      {
+        "title": "Waxing",
+        "image": "../images/service6.png",
+        "providerName": "Sophia Olivia",
+        "providerImage": "../images/userImage6.png"
+      }
+    ]
+  },
+  {
+    "id": "07",
+    "businessName": "The Relaxation Room",
+    "businessEmail": "relaxationroom@gmail.com",
+    "totalService": 750,
+    "completedService": 500,
+    "totalEarning": "£4000",
+    "totalWithdraw": "£2500",
+    "services": [
+      {
+        "title": "Hair Styling",
+        "image": "../images/service1.png",
+        "providerName": "Lily Ava",
+        "providerImage": "../images/userImage7.png"
+      },
+      {
+        "title": "Eyebrow Shaping",
+        "image": "../images/service2.png",
+        "providerName": "Lily Ava",
+        "providerImage": "../images/userImage7.png"
+      }
+    ]
+  },
+  {
+    "id": "08",
+    "businessName": "Pure Bliss Spa",
+    "businessEmail": "purebliss@gmail.com",
+    "totalService": 950,
+    "completedService": 700,
+    "totalEarning": "£5300",
+    "totalWithdraw": "£2800",
+    "services": [
+      {
+        "title": "Facial Treatments",
+        "image": "../images/service3.png",
+        "providerName": "Mia Sophia",
+        "providerImage": "../images/userImage8.png"
+      },
+      {
+        "title": "Waxing",
+        "image": "../images/service4.png",
+        "providerName": "Mia Sophia",
+        "providerImage": "../images/userImage8.png"
+      }
+    ]
+  },
+  {
+    "id": "09",
+    "businessName": "Luxe Beauty Lounge",
+    "businessEmail": "luxebeauty@gmail.com",
+    "totalService": 1300,
+    "completedService": 1050,
+    "totalEarning": "£7200",
+    "totalWithdraw": "£4000",
+    "services": [
+      {
+        "title": "Brows and Lashes",
+        "image": "../images/service5.png",
+        "providerName": "Ema Isabella",
+        "providerImage": "../images/userImage9.png"
+      },
+      {
+        "title": "Nail Care",
+        "image": "../images/service6.png",
+        "providerName": "Ema Isabella",
+        "providerImage": "../images/userImage9.png"
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "businessName": "Radiant Reflections",
+    "businessEmail": "radiantreflections@gmail.com",
+    "totalService": 2100,
+    "completedService": 1900,
+    "totalEarning": "£9800",
+    "totalWithdraw": "£5000",
+    "services": [
+      {
+        "title": "Hair Removal",
+        "image": "../images/service1.png",
+        "providerName": "Lily Emma",
+        "providerImage": "../images/userImage10.png"
+      },
+      {
+        "title": "Makeup Artists",
+        "image": "../images/service2.png",
+        "providerName": "Lily Emma",
+        "providerImage": "../images/userImage10.png"
+      }
+    ]
+  },
+  {
+    "id": "11",
+    "businessName": "Elegance Spa",
+    "businessEmail": "elegancespa@gmail.com",
+    "totalService": 1750,
+    "completedService": 1300,
+    "totalEarning": "£8400",
+    "totalWithdraw": "£4200",
+    "services": [
+      {
+        "title": "Facial Treatments",
+        "image": "../images/service3.png",
+        "providerName": "Harper Emma",
+        "providerImage": "../images/userImage11.png"
+      },
+      {
+        "title": "Massage Therapy",
+        "image": "../images/service4.png",
+        "providerName": "Harper Emma",
+        "providerImage": "../images/userImage11.png"
+      }
+    ]
+  },
+  {
+    "id": "12",
+    "businessName": "Tranquil Beauty",
+    "businessEmail": "tranquilbeauty@gmail.com",
+    "totalService": 920,
+    "completedService": 760,
+    "totalEarning": "£6700",
+    "totalWithdraw": "£3500",
+    "services": [
+      {
+        "title": "Hair Styling",
+        "image": "../images/service5.png",
+        "providerName": "Mia Isabella",
+        "providerImage": "../images/userImage12.png"
+      },
+      {
+        "title": "Eyebrow Shaping",
+        "image": "../images/service6.png",
+        "providerName": "Mia Isabella",
+        "providerImage": "../images/userImage12.png"
+      }
+    ]
+  },
+  {
+    "id": "13",
+    "businessName": "Divine Touch",
+    "businessEmail": "divinetouch@gmail.com",
+    "totalService": 1040,
+    "completedService": 890,
+    "totalEarning": "£7800",
+    "totalWithdraw": "£3900",
+    "services": [
+      {
+        "title": "Brows and Lashes",
+        "image": "../images/service1.png",
+        "providerName": "Lily Olivia",
+        "providerImage": "../images/userImage13.png"
+      },
+      {
+        "title": "Makeup Artists",
+        "image": "../images/service2.png",
+        "providerName": "Lily Olivia",
+        "providerImage": "../images/userImage13.png"
+      }
+    ]
+  },
+  {
+    "id": "14",
+    "businessName": "Heavenly Hands",
+    "businessEmail": "heavenlyhands@gmail.com",
+    "totalService": 870,
+    "completedService": 680,
+    "totalEarning": "£5500",
+    "totalWithdraw": "£2700",
+    "services": [
+      {
+        "title": "Nail Art",
+        "image": "../images/service3.png",
+        "providerName": "Harper Sophia",
+        "providerImage": "../images/userImage14.png"
+      },
+      {
+        "title": "Massage Therapy",
+        "image": "../images/service4.png",
+        "providerName": "Harper Sophia",
+        "providerImage": "../images/userImage14.png"
+      }
+    ]
+  },
+  {
+    "id": "15",
+    "businessName": "Rejuvenate Spa",
+    "businessEmail": "rejuvenate@gmail.com",
+    "totalService": 1350,
+    "completedService": 1050,
+    "totalEarning": "£8900",
+    "totalWithdraw": "£4500",
+    "services": [
+      {
+        "title": "Hair Removal",
+        "image": "../images/service5.png",
+        "providerName": "Emma Ava",
+        "providerImage": "../images/userImage15.png"
+      },
+      {
+        "title": "Brows and Lashes",
+        "image": "../images/service6.png",
+        "providerName": "Emma Ava",
+        "providerImage": "../images/userImage15.png"
+      }
+    ]
+  },
+  {
+    "id": "16",
+    "businessName": "The Spa Spot",
+    "businessEmail": "thespaspot@gmail.com",
+    "totalService": 1100,
+    "completedService": 800,
+    "totalEarning": "£6500",
+    "totalWithdraw": "£3200",
+    "services": [
+      {
+        "title": "Nail Care",
+        "image": "../images/service1.png",
+        "providerName": "Ava Mia",
+        "providerImage": "../images/userImage16.png"
+      },
+      {
+        "title": "Eyebrow Shaping",
+        "image": "../images/service2.png",
+        "providerName": "Ava Mia",
+        "providerImage": "../images/userImage16.png"
+      }
+    ]
+  },
+  {
+    "id": "17",
+    "businessName": "Glow Up Lounge",
+    "businessEmail": "glowuplounge@gmail.com",
+    "totalService": 1500,
+    "completedService": 1200,
+    "totalEarning": "£9500",
+    "totalWithdraw": "£4500",
+    "services": [
+      {
+        "title": "Facial Treatments",
+        "image": "../images/service3.png",
+        "providerName": "Sophia Ema",
+        "providerImage": "../images/userImage17.png"
+      },
+      {
+        "title": "Waxing",
+        "image": "../images/service4.png",
+        "providerName": "Sophia Ema",
+        "providerImage": "../images/userImage17.png"
+      }
+    ]
+  },
+  {
+    "id": "18",
+    "businessName": "Serenity Haven",
+    "businessEmail": "serenityhaven@gmail.com",
+    "totalService": 1250,
+    "completedService": 1000,
+    "totalEarning": "£8200",
+    "totalWithdraw": "£4000",
+    "services": [
+      {
+        "title": "Brows and Lashes",
+        "image": "../images/service5.png",
+        "providerName": "Isabella Harper",
+        "providerImage": "../images/userImage18.png"
+      },
+      {
+        "title": "Nail Art",
+        "image": "../images/service6.png",
+        "providerName": "Isabella Harper",
+        "providerImage": "../images/userImage18.png"
+      }
+    ]
+  },
+  {
+    "id": "19",
+    "businessName": "Pure Radiance",
+    "businessEmail": "pureradiance@gmail.com",
+    "totalService": 1900,
+    "completedService": 1600,
+    "totalEarning": "£10000",
+    "totalWithdraw": "£6000",
+    "services": [
+      {
+        "title": "Hair Styling",
+        "image": "../images/service1.png",
+        "providerName": "Emma Lily",
+        "providerImage": "../images/userImage19.png"
+      },
+      {
+        "title": "Facial Treatments",
+        "image": "../images/service2.png",
+        "providerName": "Emma Lily",
+        "providerImage": "../images/userImage19.png"
+      }
+    ]
+  },
+  {
+    "id": "20",
+    "businessName": "Tranquil Moments",
+    "businessEmail": "tranquilmoments@gmail.com",
+    "totalService": 1400,
+    "completedService": 1200,
+    "totalEarning": "£8500",
+    "totalWithdraw": "£4300",
+    "services": [
+      {
+        "title": "Massage Therapy",
+        "image": "../images/service3.png",
+        "providerName": "Lily Ava",
+        "providerImage": "../images/userImage20.png"
+      },
+      {
+        "title": "Makeup Artists",
+        "image": "../images/service4.png",
+        "providerName": "Lily Ava",
+        "providerImage": "../images/userImage20.png"
+      }
+    ]
+  }
+]
