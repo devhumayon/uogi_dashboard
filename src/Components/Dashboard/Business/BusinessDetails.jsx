@@ -1,6 +1,6 @@
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
-import { useAllServicesQuery } from "../../../Redux/api/serviceApi";
+import { useAllServicesByBusinessIdQuery } from "../../../Redux/api/serviceApi";
 import { useEffect, useState } from "react";
 import { getImageUrl } from "../../../utils/baseUrl";
 import { FaClock, FaEnvelope, FaMapMarkerAlt, FaStar, FaTag } from "react-icons/fa";
@@ -12,7 +12,8 @@ const BusinessDetails = () => {
   const location = useLocation();
   const [services, setServices] = useState([]);
   const businessData = location.state?.businessData;
-  // console.log(businessData);
+  console.log('businessData._id', businessData._id);
+  
 
   const imageUrl = getImageUrl();
 
@@ -20,8 +21,9 @@ const BusinessDetails = () => {
     data: allServices,
     isLoading: isFetching,
     error: fetchError,
-  } = useAllServicesQuery();
-  const servicesData = allServices?.data?.result;
+  } = useAllServicesByBusinessIdQuery(businessData?._id);
+  const servicesData = allServices?.data;
+  console.log("servicesData", servicesData);
 
   useEffect(() => {
     console.log("API Response:", allServices);
@@ -57,8 +59,6 @@ const BusinessDetails = () => {
 
   console.log('businessData=====***', businessData);
   return (
-    
-
     <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
       {/* Header Section */}
       <div className="container mx-auto px-4 py-6">
@@ -525,9 +525,9 @@ const BusinessDetails = () => {
                           <span className="text-2xl font-bold text-secondary-color">
                             £{service.servicePrice}
                           </span>
-                          <span className="text-gray-500 text-sm block">
+                          {/* <span className="text-gray-500 text-sm block">
                             Starting from
-                          </span>
+                          </span> */}
                         </div>
                       </div>
                     </div>
@@ -550,7 +550,6 @@ const BusinessDetails = () => {
                             <img
                               src={
                                 service?.businessUserId?.image ||
-                                business?.image ||
                                 "/uploads/profile/default-user.jpg"
                               }
                               alt="Provider"
@@ -558,14 +557,13 @@ const BusinessDetails = () => {
                             />
                           </div>
                           <span className="text-gray-700 font-medium">
-                            {service?.businessUserId?.fullName ||
-                              business?.fullName}
+                            {service?.businessUserId?.fullName}
                           </span>
                         </div>
 
-                        <div className="text-gray-500 flex items-center">
+                        <div className="text-[#FE5C8E] flex items-center">
                           <FaClock className="mr-1" />
-                          <span>{service.businessDuration || 60} min</span>
+                          <span>{service.businessDuration || 60} min (duration)</span>
                         </div>
                       </div>
 
