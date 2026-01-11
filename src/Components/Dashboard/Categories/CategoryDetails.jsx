@@ -272,7 +272,7 @@ const CategoryDetails = () => {
         {/* Image Section */}
         <div className="mb-6 flex justify-center">
           <img
-            src={`/${categoryData?.image}`}
+            src={`${categoryData?.image}`}
             alt={categoryData?.name || categoryData?.categoryName}
             className="h-[300px] w-[350px] rounded-3xl object-contain bg-white bottom-2 border border-gray-200"
           />

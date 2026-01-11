@@ -8,7 +8,7 @@ import { getImageUrl } from "../../utils/baseUrl";
 
 const Profile = () => {
   const { data: userProfile, refetch } = useUserProfileQuery();
-  // console.log(userProfile);
+  console.log(userProfile);
   const navigate = useNavigate();
   const [profileData, setProfileData] = useState({
     fullName: "",
@@ -20,7 +20,7 @@ const Profile = () => {
   useEffect(() => {
     if (userProfile?.data) {
       const profileDataApi = userProfile.data;
-      console.log(profileDataApi);
+      console.log("profileDataApi", profileDataApi);
 
       setProfileData({
         fullName: profileDataApi.fullName,
@@ -50,8 +50,8 @@ const Profile = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-center gap-8">
             <img
-              className="h-40 w-40 relative"
-              src={`/${
+              className="h-40 w-40 relative rounded-full"
+              src={`${
                 profileData?.image
               }?t=${new Date().getTime()}`}
               alt=""
@@ -77,7 +77,7 @@ const Profile = () => {
             <Form.Item className="text-white ">
               <Input
                 value={profileData?.email}
-                readOnly
+                disabled
                 className="cursor-not-allowed py-2 px-3 text-xl bg-site-color border !border-input-color text-base-color hover:bg-transparent hover:border-secoundary-color focus:bg-transparent focus:border-secoundary-color"
               />
             </Form.Item>

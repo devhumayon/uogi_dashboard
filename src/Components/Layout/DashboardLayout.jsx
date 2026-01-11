@@ -24,12 +24,16 @@ import { Content, Header } from "antd/es/layout/layout";
 import { useEffect, useState } from "react";
 import { AllImages } from "../../../public/images/AllImages";
 import { MdOutlineCategory } from "react-icons/md";
+// import { useUserProfileQuery } from "../../Redux/api/userApi";
 
 const DashboardLayout = () => {
+  //  const { data: userProfile, refetch } = useUserProfileQuery();
   const location = useLocation();
   const pathSegment = location.pathname.split("/").pop();
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
+
+  // console.log("profile layout page", userProfile);
 
   // Use effect to handle screen resizing
   useEffect(() => {
