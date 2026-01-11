@@ -8,3 +8,7 @@ export const getImageUrl = () => {
   // return "http://10.10.7.65:8075";
   return "https://api.uogiapp.com/";
 };
+
+// admin credentials
+// email:kalvinsingh@uogiapp.com
+// pass:UogiApp1234567!

@@ -64,15 +64,17 @@ const BusinessTable = ({ data, loading, pageSize = 0 }) => {
         <Space size="middle">
           <Tooltip placement="right" title="View Details">
             <Button
-              className="!p-0"
-              style={{
-                background: "#FFFFFF",
-                border: "none",
-                color: "#222222",
-              }}
+              className="text-[#FE5C8E]"
+              // style={{
+              //   background: "#FFFFFF",
+              //   border:"2px",
+              //   padding:"10px",
+              //   color: "#222222",
+              // }}
               onClick={() => handleNavigate(record)}
             >
-              <GoEye style={{ fontSize: "24px" }} />
+              {/* <GoEye style={{ fontSize: "24px" }} /> */}
+              View Details
             </Button>
           </Tooltip>
         </Space>

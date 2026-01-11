@@ -100,7 +100,7 @@ const Topbar = ({ collapsed, setCollapsed }) => {
           className="flex items-center justify-center gap-2 bg-transparent text-base-color border-0 rounded-lg h-8 px-2 py-1  mr-5"
         >
           <img
-            src={`/${user?.image}`}
+            src={`${user?.image}`}
             alt="profile_pic"
             style={{ width: "30px", height: "30px" }}
             className="rounded"
