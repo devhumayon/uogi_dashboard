@@ -67,20 +67,20 @@ const Dashboard = () => {
         <div>
           {/* Card Items */}
           <div className="grid grid-cols-1 items-start lg:grid-cols-2 gap-5 mt-8 w-full">
-            <div className="flex gap-5 flex-wrap rounded-lg bg-[#FE5C8E] border border-[#FE5C8E] py-2 px-1 lg:p-5 items-center  flex-1">
+            <div className="flex gap-5 flex-wrap rounded-lg bg-[#FFD9E4] border border-[#FE5C8E] py-2 px-1 lg:p-5 items-center  flex-1">
               <div className="flex gap-2 xl:gap-4 items-center">
                 <div className="p-3 w-fit">
                   <img
-                    src={AllIcons.groupsPerson}
-                    className="h-10 w-10"
+                    src={AllIcons.person}
+                    className="h-10 w-10 text-secondary-color"
                     alt=""
                   />
                 </div>
                 <div className="text-start">
-                  <p className="text-xs lg:text-base xl:text-2xl text-primary-color mb-1">
+                  <p className="text-xs lg:text-base xl:text-2xl text-secondary-color mb-1">
                     Total customer
                   </p>
-                  <p className="text-sm lg:text-base xl:text-3xl font-medium text-primary-color">
+                  <p className="text-sm lg:text-base xl:text-3xl font-medium text-secondary-color">
                     {allCustomer?.data?.allCustomerCount}
                   </p>
                 </div>
