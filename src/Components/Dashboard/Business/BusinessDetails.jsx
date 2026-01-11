@@ -344,16 +344,7 @@ const BusinessDetails = () => {
                             </span>
                           </div>
                         )}
-                        {/* {businessData.launchbreakStartTime ||
-                          (businessData.launchbreakEndTime && (
-                            <div className="text-gray-600">
-                              <span className="font-medium">Lunch Break:</span>
-                              <span className="ml-2">
-                                {businessData.launchbreakStartTime || "00:00"} -{" "}
-                                {businessData.launchbreakEndTime || "00:00"}
-                              </span>
-                            </div>
-                          ))} */}
+                        
                         <div className="text-gray-600">
                           <span className="font-medium">Lunch Break:</span>
                           <span className="ml-2">
