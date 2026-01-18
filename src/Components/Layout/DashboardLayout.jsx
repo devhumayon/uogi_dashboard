@@ -178,7 +178,7 @@ const DashboardLayout = () => {
           collapsible
           collapsed={collapsed}
           style={{
-            background: "#FFD9E4",
+            background: "#FEF2F5",
             // boxShadow: "0px 0px 5px #00000040",
             position: "sticky",
             top: 10,

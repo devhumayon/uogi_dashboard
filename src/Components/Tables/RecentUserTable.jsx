@@ -21,7 +21,7 @@ const RecentUserTable = ({ data, loading, pageSize = 5 }) => {
         <div className="flex items-center">
           {record?.image && (
             <img
-              src={`/${record.image}`}
+              src={`${record.image}`}
               alt={text}
               style={{
                 width: 40,
@@ -74,6 +74,7 @@ const RecentUserTable = ({ data, loading, pageSize = 5 }) => {
         pagination={pageSize > 0 ? { pageSize } : false}
         rowKey="id"
         scroll={{ x: true }}
+        className="bg-[#FEF2F5]"
       />
     </div>
   );

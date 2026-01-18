@@ -12,6 +12,7 @@ import HourArea_Chart from "../Chart/HourAreaChart";
 import IncomeBarChart from "../Chart/IncomeBarChart";
 import { useAllCustomerQuery } from "../../Redux/api/dashboardApi";
 import { useAllUsersQuery } from "../../Redux/api/userApi";
+import { UserAddOutlined, UsergroupAddOutlined } from "@ant-design/icons";
 
 const Dashboard = () => {
   const { data: allCustomer } = useAllCustomerQuery();
@@ -67,35 +68,37 @@ const Dashboard = () => {
         <div>
           {/* Card Items */}
           <div className="grid grid-cols-1 items-start lg:grid-cols-2 gap-5 mt-8 w-full">
-            <div className="flex gap-5 flex-wrap rounded-lg bg-[#FFD9E4] border border-[#FE5C8E] py-2 px-1 lg:p-5 items-center  flex-1">
+            <div className="flex gap-5 flex-wrap rounded-lg bg-[#FEF2F5] border border-[#F05C8E] py-2 px-1 lg:p-5 items-center flex-1">
               <div className="flex gap-2 xl:gap-4 items-center">
                 <div className="p-3 w-fit">
-                  <img
+                  {/* <img
                     src={AllIcons.person}
-                    className="h-10 w-10 text-secondary-color"
+                    className="h-10 w-10 text-[#000]"
                     alt=""
-                  />
+                  /> */}
+                  <UserAddOutlined className="text-5xl" />
                 </div>
                 <div className="text-start">
-                  <p className="text-xs lg:text-base xl:text-2xl text-secondary-color mb-1">
+                  <p className="text-xs lg:text-base xl:text-2xl text-[#000] mb-1">
                     Total customer
                   </p>
-                  <p className="text-sm lg:text-base xl:text-3xl font-medium text-secondary-color">
+                  <p className="text-sm lg:text-base xl:text-3xl font-medium text-[#000]">
                     {allCustomer?.data?.allCustomerCount}
                   </p>
                 </div>
               </div>
             </div>
-            <div className="flex gap-5 flex-wrap rounded-lg bg-[#FEF2F5] border border-secondary-color py-2 px-1 xl:p-5 items-center  flex-1">
+            <div className="flex gap-5 flex-wrap rounded-lg bg-[#FEF2F5] border border-[#F05C8E] py-2 px-1 xl:p-5 items-center  flex-1">
               <div className="flex gap-2 xl:gap-4 items-center">
                 <div className="p-3  w-fit">
-                  <img src={AllIcons.person} className="h-10 w-10" alt="" />
+                  {/* <img src={AllIcons.person} className="h-10 w-10" alt="" /> */}
+                  <UsergroupAddOutlined className="text-5xl" />
                 </div>
                 <div className="text-start">
-                  <p className="text-xs lg:text-sm xl:text-2xl text-secondary-color mb-1">
+                  <p className="text-xs lg:text-sm xl:text-2xl text-[#000] mb-1">
                     Total Business
                   </p>
-                  <p className="text-sm lg:text-base xl:text-3xl font-medium text-secondary-color">
+                  <p className="text-sm lg:text-base xl:text-3xl font-medium text-[#000]">
                     {allCustomer?.data?.allBusinessCount}
                   </p>
                 </div>
@@ -105,10 +108,7 @@ const Dashboard = () => {
 
           {/* graphs */}
           <div className="mt-8 w-full">
-            <div
-              className="w-full p-3 bg-[#FFFFFF] rounded-lg border border-input-color"
-              //
-            >
+            <div className="w-full p-3 bg-[#FFFFFF] rounded-lg border border-[#F05C8E]">
               <div className="flex justify-between text-base-color mt-4">
                 <p className="text-2xl sm:text-3xl mb-5">Income</p>
                 <div>
@@ -117,7 +117,7 @@ const Dashboard = () => {
                       components: {
                         Select: {
                           fontSize: 16,
-                          colorBorder: "#222222",
+                          colorBorder: "#FEF3574",
                         },
                       },
                     }}
@@ -150,7 +150,7 @@ const Dashboard = () => {
 
           <div className="grid grid-cols-1 items-start lg:grid-cols-2 gap-5 mt-8 w-full">
             <div
-              className="w-full p-3 bg-[#FFFFFF] rounded-lg border border-input-color"
+              className="w-full p-3 bg-[#FFFFFF] rounded-lg border border-[#F05C8E]"
               //
             >
               <div className="flex justify-between text-base-color mt-4">
@@ -161,7 +161,7 @@ const Dashboard = () => {
                       components: {
                         Select: {
                           fontSize: 16,
-                          colorBorder: "#222222",
+                          colorBorder: "#FEF3574",
                         },
                       },
                     }}
@@ -180,7 +180,7 @@ const Dashboard = () => {
             </div>
 
             <div
-              className="w-full p-3 bg-[#FFFFFF] rounded-lg border border-input-color"
+              className="w-full p-3 bg-[#FFFFFF] rounded-lg border border-[#F05C8E]"
               //
             >
               <div className="flex justify-between text-base-color mt-4">
@@ -191,7 +191,7 @@ const Dashboard = () => {
                       components: {
                         Select: {
                           fontSize: 16,
-                          colorBorder: "#222222",
+                          colorBorder: "#FEF3574",
                         },
                       },
                     }}
@@ -217,12 +217,10 @@ const Dashboard = () => {
           <div className="flex flex-col lg:flex-row gap-4 mt-5">
             <div className="bg-[#FFFFFF] rounded flex-1 p-3">
               <div className="flex justify-between items-center mx-3 py-2">
-                <p className="text-2xl font-semibold text-base-color">
-                  Users
-                </p>
+                <p className="text-2xl font-semibold text-base-color">Users</p>
                 <div>
                   <Link to="/users">
-                    <p className="bg-[#FEF2F5] border border-secondary-color text-[#FE5C8E] px-3 py-1 rounded-lg">
+                    <p className="bg-[#FEF2F5] border border-[#F05C8E] text-[#FE5C8E] px-3 py-1 rounded-lg">
                       See All
                     </p>
                   </Link>
