@@ -229,9 +229,9 @@ const Services = () => {
   }
 
   return (
-    <div className="min-h-[90vh] bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-[90vh] bg-[#FEF2F5] to-white">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-[#f36391] to-[#ca0846] text-white">
+      <div className="bg-gradient-to-r bg-[#FEF2F5] text-[#FE5C8E]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
@@ -361,11 +361,11 @@ const Services = () => {
               {selectedCategory && (
                 <Badge
                   count={
-                    <div className="flex items-center gap-1 px-2 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">
+                    <div className="flex items-center gap-1 px-2 py-1 bg-purple-100 text-[#FE5C8E] rounded-full text-sm">
                       Category: {selectedCategory}
                       <button
                         onClick={() => setSelectedCategory("")}
-                        className="ml-1 text-purple-500 hover:text-purple-700"
+                        className="ml-1 text-[#FE5C8E] hover:text-[#FE5C8E]"
                       >
                         ×
                       </button>
@@ -411,7 +411,7 @@ const Services = () => {
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-gray-800">
             Available Services
-            <span className="ml-2 text-purple-600">
+            <span className="ml-2 text-[#FE5C8E]">
               ({filteredServices?.length || 0} found)
             </span>
           </h2>
@@ -458,27 +458,23 @@ const Services = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-3xl font-bold text-purple-600 mb-2">
+              <div className="text-3xl font-bold text-[#FE5C8E] mb-2">
                 {servicesData.length}+
               </div>
               <div className="text-gray-600">Services Available</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-indigo-600 mb-2">
+              <div className="text-3xl font-bold text-[#FE5C8E] mb-2">
                 {categoriesData.length}
               </div>
               <div className="text-gray-600">Categories</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-purple-600 mb-2">
-                4.9★
-              </div>
+              <div className="text-3xl font-bold text-[#FE5C8E] mb-2">4.9★</div>
               <div className="text-gray-600">Average Rating</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-indigo-600 mb-2">
-                24/7
-              </div>
+              <div className="text-3xl font-bold text-[#FE5C8E] mb-2">24/7</div>
               <div className="text-gray-600">Support Available</div>
             </div>
           </div>
@@ -513,15 +509,15 @@ const ServiceCard = ({ service, index, isFavorite, onToggleFavorite }) => {
             className="absolute top-4 right-4 p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors duration-300"
           >
             {isFavorite ? (
-              <TbHeartFilled className="text-red-500 text-xl" />
+              <TbHeartFilled className="text-[#FE5C8E] text-xl" />
             ) : (
-              <TbHeart className="text-gray-600 text-xl" />
+              <TbHeart className="text-[#FE5C8E] text-xl" />
             )}
           </button>
 
           {/* Category Badge */}
           <div className="absolute top-4 left-4">
-            <span className="px-3 py-1 bg-gradient-to-r from-[#f36391] to-[#ca0846] text-white text-sm font-medium rounded-full">
+            <span className="px-3 py-1 bg-gradient-to-r text-[#FE5C8E] bg-[#FEF2F5] text-sm font-medium rounded-full">
               {service?.categoryName}
             </span>
           </div>
@@ -540,7 +536,7 @@ const ServiceCard = ({ service, index, isFavorite, onToggleFavorite }) => {
         {/* Content Section */}
         <div className="p-5">
           {/* Service Title */}
-          <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-1 group-hover:text-purple-600 transition-colors duration-300">
+          <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-1 group-hover:text-[#FE5C8E] transition-colors duration-300">
             {service?.serviceName}
           </h3>
 

@@ -73,7 +73,7 @@ const ServiceDetails = () => {
     return (
       <div className="min-h-[90vh] flex flex-col items-center justify-center p-8">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-700 mb-4">
+          <h2 className="text-3xl font-bold text-[#FE5C8E] mb-4">
             Service Not Found
           </h2>
           <p className="text-gray-600 mb-8">
@@ -81,7 +81,7 @@ const ServiceDetails = () => {
           </p>
           <button
             onClick={handleGoBack}
-            className="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 flex items-center gap-2"
+            className="px-6 py-3 bg-gradient-to-r bg-[#FEF2F5] text-[#FE5C8E] rounded-lg  transition-all duration-300 flex items-center gap-2"
           >
             <FaArrowLeft /> Back to Services
           </button>
@@ -107,10 +107,10 @@ const ServiceDetails = () => {
           {/* Service Header */}
           <div className="mb-8">
             <div className="flex items-center gap-2 mb-4">
-              <span className="px-3 py-1 bg-gradient-to-r from-purple-100 to-indigo-100 text-purple-600 rounded-full text-sm font-medium">
+              <span className="px-3 py-1 bg-[#FEF2F5] text-[#FE5C8E] rounded-full text-sm font-medium">
                 {service?.categoryName}
               </span>
-              <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm font-medium">
+              <span className="px-3 py-1 bg-[#FEF2F5] text-[#FE5C8E] rounded-full text-sm font-medium">
                 {service?.subCategoryName}
               </span>
             </div>
@@ -119,12 +119,12 @@ const ServiceDetails = () => {
             </h1>
             <div className="flex items-center gap-6 text-gray-600">
               <div className="flex items-center gap-2">
-                <FaClock className="text-purple-500" />
+                <FaClock className="text-[#FE5C8E]" />
                 <span>{service?.businessDuration || 60} minutes</span>
               </div>
               <div className="flex items-center gap-1">
                 {[1, 2, 3, 4, 5].map((star) => (
-                  <FaStar key={star} className="text-yellow-400" />
+                  <FaStar key={star} className="text-[#FE5C8E]" />
                 ))}
                 <span className="ml-1">(4.9)</span>
               </div>
@@ -144,7 +144,7 @@ const ServiceDetails = () => {
           {/* Service Description */}
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <FaTag className="text-purple-500" />
+              <FaTag className="text-[#FE5C8E]" />
               Service Details
             </h2>
             <p className="text-gray-700 text-lg leading-relaxed bg-gray-50 p-6 rounded-xl border border-gray-200">
@@ -164,7 +164,7 @@ const ServiceDetails = () => {
                   className="flex items-center gap-3 p-4 bg-white rounded-xl border border-gray-200 hover:border-purple-300 hover:shadow-lg transition-all duration-300"
                 >
                   <div className="p-2 bg-gradient-to-r from-purple-100 to-indigo-100 rounded-lg">
-                    <div className="text-purple-600">{feature.icon}</div>
+                    <div className="text-[#FE5C8E]">{feature.icon}</div>
                   </div>
                   <span className="text-gray-700 font-medium">
                     {feature.text}
@@ -222,7 +222,7 @@ const ServiceDetails = () => {
           {/* Sticky Booking Card */}
           <div className="sticky top-8">
             {/* Price Card */}
-            <div className="bg-gradient-to-br from-purple-600 to-indigo-600 text-white rounded-2xl p-6 mb-6 shadow-xl">
+            <div className="bg-gradient-to-br bg-[#FEF2F5] text-[#FE5C8E] rounded-2xl p-6 mb-6 shadow-xl">
               <div className="flex justify-between items-center mb-4">
                 <div>
                   <p className="text-lg font-medium">Starting from</p>
@@ -237,7 +237,7 @@ const ServiceDetails = () => {
               </div>
               <button
                 onClick={handleBookNow}
-                className="w-full py-4 bg-white text-purple-600 font-bold rounded-xl hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
+                className="w-full py-4 bg-[#FE5C8E] text-[#FEF2F5] font-bold rounded-xl hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
               >
                 Thanks
               </button>
@@ -249,7 +249,7 @@ const ServiceDetails = () => {
             {/* Business Owner Card */}
             <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-lg">
               <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                <FaUser className="text-purple-500" />
+                <FaUser className="text-[#FE5C8E]" />
                 Service Provider
               </h3>
 
@@ -262,7 +262,7 @@ const ServiceDetails = () => {
                     alt={service?.businessUserId?.fullName}
                     className="w-20 h-20 rounded-full object-cover border-4 border-purple-100"
                   />
-                  <div className="absolute bottom-0 right-0 w-6 h-6 bg-green-500 rounded-full border-2 border-white"></div>
+                  <div className="absolute bottom-0 right-0 w-6 h-6 bg-[#FE5C8E] rounded-full border-2 border-white"></div>
                 </div>
                 <div>
                   <h4 className="text-xl font-bold text-gray-900">
@@ -270,7 +270,7 @@ const ServiceDetails = () => {
                       "Professional Provider"}
                   </h4>
                   <div className="flex items-center gap-2 mt-1">
-                    <FaStar className="text-yellow-400" />
+                    <FaStar className="text-[#FE5C8E]" />
                     <span className="text-gray-600">4.9 (128 reviews)</span>
                   </div>
                 </div>
@@ -281,7 +281,7 @@ const ServiceDetails = () => {
                 {service?.businessUserId?.email && (
                   <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300">
                     <div className="p-2 bg-purple-100 rounded-lg">
-                      <FaEnvelope className="text-purple-600" />
+                      <FaEnvelope className="text-[#FE5C8E]" />
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">Email</p>
@@ -328,20 +328,20 @@ const ServiceDetails = () => {
             {/* Safety Guidelines */}
             <div className="mt-6 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl border border-blue-200">
               <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
-                <FaShieldAlt className="text-blue-500" />
+                <FaShieldAlt className="text-[#FE5C8E]" />
                 Safety Guidelines
               </h4>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-[#FE5C8E] rounded-full mt-2"></div>
                   <span>All tools are sterilized and sanitized</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-[#FE5C8E] rounded-full mt-2"></div>
                   <span>Single-use items are disposed after each service</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-[#FE5C8E] rounded-full mt-2"></div>
                   <span>Hygiene certified professionals</span>
                 </li>
               </ul>

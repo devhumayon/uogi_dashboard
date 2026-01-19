@@ -54,7 +54,7 @@ const Business = () => {
       <div className="bg-[#FFFFFF] rounded">
         <div className="flex justify-between p-6">
           <div className="flex items-center gap-3">
-            <h1 className="text-3xl font-bold text-secondary-color">
+            <h1 className="text-3xl font-bold text-[#FE5C8E]">
               Business List
             </h1>
           </div>

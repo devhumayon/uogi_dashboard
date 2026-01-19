@@ -65,13 +65,13 @@ const BusinessDetails = () => {
         <div className="flex items-center mb-2">
           <Link
             to="/business"
-            className="flex items-center text-secondary-color hover:text-primary-color transition-colors duration-300"
+            className="flex items-center text-[#FE5C8E] hover:text-primary-color transition-colors duration-300"
           >
             <MdOutlineArrowBackIosNew className="text-xl sm:text-2xl lg:text-3xl mr-2" />
             <span className="text-lg font-medium">Back to Business</span>
           </Link>
         </div>
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary-color mb-2">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#FE5C8E] mb-2">
           Business Details
         </h1>
         <div className="w-24 h-1 bg-gradient-to-r from-pink-400 to-pink-600 rounded-full mb-8"></div>
@@ -138,7 +138,7 @@ const BusinessDetails = () => {
                         alt={businessData?.businessId?.fullName}
                         className="w-24 h-24 md:w-32 md:h-32 rounded-2xl object-cover border-4 border-white shadow-lg"
                       />
-                      <div className="absolute -bottom-2 -right-2 bg-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                      <div className="absolute -bottom-2 -right-2 bg-[#FEF2F5] text-[#FE5C8E] text-xs font-bold px-3 py-1 rounded-full">
                         Verified
                       </div>
                     </div>
@@ -162,7 +162,7 @@ const BusinessDetails = () => {
                               {businessData.businessType.map((type, index) => (
                                 <span
                                   key={index}
-                                  className="px-3 py-1 bg-pink-100 text-pink-700 rounded-full text-sm font-medium"
+                                  className="px-3 py-1 bg-[#FEF2F5] text-[#FE5C8E] rounded-full text-sm font-medium"
                                 >
                                   {type}
                                 </span>
@@ -177,7 +177,7 @@ const BusinessDetails = () => {
                           onClick={() =>
                             showContactNumber(businessData.businessId.email)
                           }
-                          className="px-4 py-2 bg-secondary-color text-white rounded-lg hover:bg-[#FE5C8E] transition-colors duration-300 font-medium"
+                          className="px-4 py-2 bg-[#FEF2F5] text-[#FE5C8E] rounded-lg hover:bg-[#FE5C8E] transition-colors duration-300 font-medium"
                         >
                           Contact
                         </button>
@@ -202,9 +202,9 @@ const BusinessDetails = () => {
                     {/* Contact Info Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {businessData?.businessId?.email && (
-                        <div className="flex items-center p-3 bg-pink-50 rounded-xl">
+                        <div className="flex items-center p-3 bg-[#FEF2F5] rounded-xl">
                           <div className="p-2 bg-white rounded-lg mr-3">
-                            <FaEnvelope className="text-pink-500" />
+                            <FaEnvelope className="text-[#FE5C8E]" />
                           </div>
                           <div>
                             <p className="text-sm text-gray-500">Email</p>
@@ -230,7 +230,7 @@ const BusinessDetails = () => {
                       {businessData.businessLocation && (
                         <div className="flex items-center p-3 bg-pink-50 rounded-xl">
                           <div className="p-2 bg-white rounded-lg mr-3">
-                            <FaMapMarkerAlt className="text-pink-500" />
+                            <FaMapMarkerAlt className="text-[#FE5C8E]" />
                           </div>
                           <div>
                             <p className="text-sm text-gray-500">Location</p>
@@ -244,7 +244,7 @@ const BusinessDetails = () => {
                       {businessData.paymentMethod && (
                         <div className="flex items-center p-3 bg-pink-50 rounded-xl">
                           <div className="p-2 bg-white rounded-lg mr-3">
-                            <RiMoneyPoundCircleFill className="text-pink-500" />
+                            <RiMoneyPoundCircleFill className="text-[#FE5C8E]" />
                           </div>
                           <div>
                             <p className="text-sm text-gray-500">
@@ -257,35 +257,23 @@ const BusinessDetails = () => {
                         </div>
                       )}
 
-                      {/* {businessData?.licenseId && (
+                      {(businessData?.addressLine1 ||
+                        businessData?.addressLine2) && (
                         <div className="flex items-center p-3 bg-pink-50 rounded-xl">
                           <div className="p-2 bg-white rounded-lg mr-3">
-                            <FaIdCard className="text-pink-500" />
+                            <FaMapMarkerAlt className="text-[#FE5C8E]" />
                           </div>
                           <div>
-                            <p className="text-sm text-gray-500">License ID</p>
-                            <p className="font-medium text-gray-900">{business.licenseId}</p>
+                            <p className="text-sm text-gray-500">Address</p>
+                            <p className="font-medium text-gray-900">
+                              {businessData.addressLine1 ||
+                                businessData.addressLine2 ||
+                                "N/A"}
+                              , {businessData.townCity || "N/A"}
+                            </p>
                           </div>
                         </div>
-                      )} */}
-
-                      {businessData?.addressLine1 ||
-                        (businessData?.addressLine2 && (
-                          <div className="flex items-center p-3 bg-pink-50 rounded-xl">
-                            <div className="p-2 bg-white rounded-lg mr-3">
-                              <FaMapMarkerAlt className="text-pink-500" />
-                            </div>
-                            <div>
-                              <p className="text-sm text-gray-500">Address</p>
-                              <p className="font-medium text-gray-900">
-                                {businessData.addressLine1 ||
-                                  businessData.addressLine2 ||
-                                  "N/A"}
-                                , {businessData.townCity || "N/A"}
-                              </p>
-                            </div>
-                          </div>
-                        ))}
+                      )}
                     </div>
                   </div>
                 </div>
@@ -297,7 +285,7 @@ const BusinessDetails = () => {
               businessData.availableDaysTime.length > 0 && (
                 <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-pink-100 p-6 mb-8">
                   <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                    <FaClock className="mr-3 text-pink-500" />
+                    <FaClock className="mr-3 text-[#FE5C8E]" />
                     Business Hours
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -310,7 +298,7 @@ const BusinessDetails = () => {
                           <span className="font-semibold text-gray-800">
                             {dayTime.day}
                           </span>
-                          <span className="text-sm px-2 py-1 bg-pink-100 text-pink-700 rounded-full">
+                          <span className="text-sm px-2 py-1 bg-pink-100 text-[#FE5C8E] rounded-full">
                             Open
                           </span>
                         </div>
@@ -344,7 +332,7 @@ const BusinessDetails = () => {
                             </span>
                           </div>
                         )}
-                        
+
                         <div className="text-gray-600">
                           <span className="font-medium">Lunch Break:</span>
                           <span className="ml-2">
@@ -379,11 +367,11 @@ const BusinessDetails = () => {
                 <div className="flex justify-between items-center p-3 hover:bg-pink-50 rounded-lg transition-colors duration-300">
                   <div className="flex items-center">
                     <div className="p-2 bg-pink-100 rounded-lg mr-3">
-                      <TbCategoryFilled className="text-pink-600" />
+                      <TbCategoryFilled className="text-[#FE5C8E]" />
                     </div>
                     <span className="text-gray-700">Total Services</span>
                   </div>
-                  <span className="text-2xl font-bold text-secondary-color">
+                  <span className="text-2xl font-bold text-[#FE5C8E]">
                     {services.length}
                   </span>
                 </div>
@@ -431,7 +419,7 @@ const BusinessDetails = () => {
                   </h4>
                   <div className="h-40 bg-gray-200 rounded-xl flex items-center justify-center text-gray-500">
                     <div className="text-center">
-                      <FaMapMarkerAlt className="text-3xl mx-auto mb-2 text-pink-500" />
+                      <FaMapMarkerAlt className="text-3xl mx-auto mb-2 text-[#FE5C8E]" />
                       <p>Map View Available</p>
                       <p className="text-sm">
                         {businessData.townCity}, {businessData.country}
@@ -443,16 +431,16 @@ const BusinessDetails = () => {
             </div>
 
             {/* Quick Actions Card */}
-            <div className="bg-gradient-to-br from-pink-500 to-secondary-color rounded-2xl shadow-xl overflow-hidden p-6 text-white">
+            <div className="bg-gradient-to-br bg-[#FEF2F5] rounded-2xl shadow-xl overflow-hidden p-6 text-[#FE5C8E]">
               <h3 className="text-xl font-bold mb-4">Quick Actions</h3>
               <div className="space-y-3">
-                <button className="w-full py-3 bg-white/20 backdrop-blur-sm rounded-lg hover:bg-white/30 transition-all duration-300 flex items-center justify-center font-medium">
+                <button className="w-full py-3 bg-[#FE5C8E] text-[#FEF2F5] backdrop-blur-sm rounded-lg hover:bg-white/30 transition-all duration-300 flex items-center justify-center font-medium">
                   Book Appointment
                 </button>
-                <button className="w-full py-3 bg-white/20 backdrop-blur-sm rounded-lg hover:bg-white/30 transition-all duration-300 flex items-center justify-center font-medium">
+                <button className="w-full py-3 bg-[#FE5C8E] text-[#FEF2F5] backdrop-blur-sm rounded-lg hover:bg-white/30 transition-all duration-300 flex items-center justify-center font-medium">
                   View All Reviews
                 </button>
-                <button className="w-full py-3 bg-white/20 backdrop-blur-sm rounded-lg hover:bg-white/30 transition-all duration-300 flex items-center justify-center font-medium">
+                <button className="w-full py-3 bg-[#FE5C8E] text-[#FEF2F5] backdrop-blur-sm rounded-lg hover:bg-white/30 transition-all duration-300 flex items-center justify-center font-medium">
                   Download Brochure
                 </button>
               </div>
@@ -464,7 +452,7 @@ const BusinessDetails = () => {
         <div className="mt-12">
           <div className="flex flex-col md:flex-row md:items-center justify-between mb-8">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-secondary-color mb-2">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#FE5C8E] mb-2">
                 All Services
               </h2>
               <p className="text-gray-600">
@@ -505,7 +493,7 @@ const BusinessDetails = () => {
 
                       {/* Category Badge */}
                       <div className="absolute top-4 left-4">
-                        <span className="px-3 py-1 bg-pink-500 text-white text-sm font-bold rounded-full">
+                        <span className="px-3 py-1 bg-[#FEF2F5] text-[#FE5C8E] text-sm font-bold rounded-full">
                           {service.categoryName}
                         </span>
                       </div>
@@ -513,7 +501,7 @@ const BusinessDetails = () => {
                       {/* Price Tag */}
                       <div className="absolute bottom-4 right-4">
                         <div className="px-4 py-2 bg-white rounded-xl shadow-lg">
-                          <span className="text-2xl font-bold text-secondary-color">
+                          <span className="text-2xl font-bold text-[#FE5C8E]">
                             £{service.servicePrice}
                           </span>
                           {/* <span className="text-gray-500 text-sm block">
@@ -554,14 +542,16 @@ const BusinessDetails = () => {
 
                         <div className="text-[#FE5C8E] flex items-center">
                           <FaClock className="mr-1" />
-                          <span>{service.businessDuration || 60} min (duration)</span>
+                          <span>
+                            {service.businessDuration || 60} min (duration)
+                          </span>
                         </div>
                       </div>
 
                       {/* Subcategory */}
                       {service.subCategoryName && (
                         <div className="mt-4 pt-4 border-t border-gray-100">
-                          <span className="text-sm font-medium text-pink-600 bg-pink-50 px-3 py-1 rounded-full">
+                          <span className="text-sm font-medium text-[#FE5C8E] bg-[#FEF2F5] px-3 py-1 rounded-full">
                             {service.subCategoryName}
                           </span>
                         </div>
