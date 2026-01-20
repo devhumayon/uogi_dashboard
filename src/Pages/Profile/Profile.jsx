@@ -51,9 +51,7 @@ const Profile = () => {
           <div className="flex items-center justify-center gap-8">
             <img
               className="h-40 w-40 relative rounded-full"
-              src={`${
-                profileData?.image
-              }?t=${new Date().getTime()}`}
+              src={`${profileData?.image}?t=${new Date().getTime()}`}
               alt=""
             />
             <p className="text-5xl font-semibold">{profileData?.fullName}</p>
@@ -61,7 +59,7 @@ const Profile = () => {
           {/* < to="edit-profile" className="hover:text-primary-color"> */}
           <button
             onClick={handleEditClick}
-            className="bg-secondary-color px-5 py-3 rounded-lg"
+            className="bg-[#FE5C8E] text-[#FEF2F5] px-5 py-3 rounded-lg"
           >
             <div className="flex gap-1">
               <EditOutlined style={{ color: "#FAFAFA" }} />

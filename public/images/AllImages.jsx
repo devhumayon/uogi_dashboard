@@ -1,4 +1,5 @@
 import logo from "./logo.png";
+import login from "./login.png";
 
 // Auth Images
 import ForgotPassword from "./authImages/ForgotPassword.png";
@@ -32,6 +33,7 @@ export const AllImages = {
   userImage,
   PDFImage,
   user,
+  login,
 };
 
 export const AllServices = {

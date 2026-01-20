@@ -121,7 +121,7 @@ const SettingsChangePassword = () => {
 
             <Form.Item>
               <Button
-                className="w-full py-6 border !border-secondary-color hover:border-secondary-color text-xl !text-primary-color bg-secondary-color hover:!bg-secondary-color font-semibold rounded-2xl mt-8"
+                className="w-full py-6 border bg-[#FE5C8E] text-[#FEF2F5] font-semibold rounded-2xl mt-8"
                 htmlType="submit"
               >
                 Change password

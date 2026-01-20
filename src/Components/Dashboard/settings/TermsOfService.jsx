@@ -71,7 +71,7 @@ const TermsOfService = () => {
   return (
     <div className="min-h-screen bg-primary-color py-1 px-8 ">
       <div className="p-2 rounded">
-        <h1 className="text-4xl font-bold py-4  text-secondary-color">
+        <h1 className="text-4xl font-bold py-4  text-[#FE5C8E]">
           Terms Of Service
         </h1>
         <div className="">
@@ -85,7 +85,7 @@ const TermsOfService = () => {
         <Button
           onClick={handleOnSave}
           loading={isAdding || isUpdating}
-          className="w-full py-6 border !border-secondary-color hover:border-secondary-color text-xl !text-primary-color bg-secondary-color hover:!bg-secondary-color font-semibold rounded-2xl mt-8"
+          className="w-full py-6 border bg-[#FE5C8E] text-[#FEF2F5] font-semibold rounded-2xl mt-8"
         >
           Save
         </Button>

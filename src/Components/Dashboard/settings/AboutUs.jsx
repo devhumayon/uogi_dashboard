@@ -73,9 +73,7 @@ const AboutUs = () => {
   return (
     <div className="min-h-screen bg-primary-color py-1 px-8 ">
       <div className="p-2 rounded">
-        <h1 className="text-4xl font-bold py-4  text-secondary-color">
-          About Us
-        </h1>
+        <h1 className="text-4xl font-bold py-4  text-[#FE5C8E]">About Us</h1>
 
         <div className="">
           <JoditEditor
@@ -88,7 +86,7 @@ const AboutUs = () => {
         <Button
           onClick={handleOnSave}
           loading={isAdding || isUpdating}
-          className="w-full py-6 border !border-secondary-color hover:border-secondary-color text-xl !text-primary-color bg-secondary-color hover:!bg-secondary-color font-semibold rounded-2xl mt-8"
+          className="w-full py-6 border bg-[#FE5C8E] text-[#FEF2F5] text-xl  font-semibold rounded-2xl mt-8"
         >
           Save
         </Button>

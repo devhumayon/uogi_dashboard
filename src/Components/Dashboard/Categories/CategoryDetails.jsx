@@ -208,7 +208,7 @@ const CategoryDetails = () => {
     <div className="min-h-[90vh] mx-auto p-8">
       {/* Header Section */}
       <div className="flex flex-col items-start justify-between gap-4 mb-6 sm:flex-row sm:items-center">
-        <h2 className="text-3xl font-semibold text-secondary-color">
+        <h2 className="text-3xl font-semibold text-[#FE5C8E]">
           Category Details
         </h2>
         <div className="flex gap-3">
@@ -216,7 +216,7 @@ const CategoryDetails = () => {
             theme={{
               components: {
                 Button: {
-                  defaultBg: "rgb(254,51,114)",
+                  defaultBg: "#FE5C8E",
                   defaultColor: "rgb(255,255,255)",
                   defaultHoverBg: "rgb(188,33,82)",
                   defaultHoverColor: "rgb(255,255,255)",
@@ -237,7 +237,7 @@ const CategoryDetails = () => {
             theme={{
               components: {
                 Button: {
-                  colorPrimary: "#ff4d4f",
+                  colorPrimary: "#FE5C8E",
                   defaultBg: "#ff4d4f",
                   defaultColor: "rgb(255,255,255)",
                   defaultHoverBg: "#d9363e",
@@ -258,7 +258,7 @@ const CategoryDetails = () => {
               <Button
                 icon={<DeleteOutlined />}
                 size="large"
-                className="px-6"
+                className="px-6 bg-[#FE5C8E] text-[#FEF2F5]"
                 loading={isDeleting}
               >
                 Delete
@@ -293,7 +293,7 @@ const CategoryDetails = () => {
               theme={{
                 components: {
                   Button: {
-                    defaultBg: "rgb(254,51,114)",
+                    defaultBg: "#FE5C8E",
                     defaultColor: "rgb(255,255,255)",
                     defaultHoverBg: "rgb(188,33,82)",
                     defaultHoverColor: "rgb(255,255,255)",

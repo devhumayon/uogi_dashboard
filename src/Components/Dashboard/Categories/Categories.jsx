@@ -52,10 +52,10 @@ const Categories = () => {
 
   return (
     <div className="min-h-[90vh]">
-      <div className="bg-[#FFFFFF] rounded p-3">
+      <div className="bg-[#FEF2F5] rounded p-3">
         <div className="flex justify-between p-6">
           <div className="flex flex-col items-center justify-between w-full gap-5 md:flex-row">
-            <h1 className="text-3xl font-bold text-secondary-color">
+            <h1 className="text-3xl font-bold text-[#FE5C8E]">
               All Categories
             </h1>
             <div>
@@ -63,7 +63,7 @@ const Categories = () => {
                 theme={{
                   components: {
                     Button: {
-                      defaultBg: "rgb(254,51,114)",
+                      defaultBg: "#FEF2F5",
                       defaultColor: "rgb(255,255,255)",
                       defaultHoverBg: "rgb(188,33,82)",
                       defaultHoverColor: "rgb(255,255,255)",
@@ -75,7 +75,7 @@ const Categories = () => {
                 <Button
                   onClick={showModal}
                   size="large"
-                  className="h-auto px-8 py-2 text-lg font-medium"
+                  className="h-auto px-8 py-2 text-lg font-medium bg-[#FE5C8E] text-[#FEF2F5]"
                 >
                   Add Category
                 </Button>

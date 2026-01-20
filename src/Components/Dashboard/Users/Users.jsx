@@ -68,9 +68,7 @@ export default function AllUsers() {
       <div className="bg-[#FFFFFF] rounded">
         <div className="flex justify-between p-6">
           <div className="flex items-center gap-3">
-            <h1 className="text-3xl font-bold text-secondary-color">
-              User List
-            </h1>
+            <h1 className="text-3xl font-bold text-[#FE5C8E]">User List</h1>
           </div>
           <div className="flex gap-4 items-center">
             <Input

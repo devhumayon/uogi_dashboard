@@ -51,7 +51,7 @@ const UpdatePassword = () => {
     <div className="text-base-color">
       <div className="max-w-[1350px] w-[90%] mx-auto grid grid-cols-1 lg:grid-cols-2 items-center justify-items-center gap-10 min-h-screen py-10">
         <div className="">
-          <img src={AllImages.logo} alt="logo" className="mx-auto" />
+          <img src={AllImages.login} alt="logo" className="mx-auto" />
         </div>
         <div className="w-full flex flex-col justify-center items-center min-h-[80vh] p-5 md:p-8 lg:p-10 xl:p-16 bg-[#FEF2F599] lg:w-full mx-auto rounded-lg border border-[#FE5C8E]">
           <div className="w-full">
@@ -129,7 +129,7 @@ const UpdatePassword = () => {
               <Form.Item>
                 <Button
                   type="primary"
-                  className="w-full py-6 border border-secondary-color hover:border-secondary-color text-xl text-primary-color bg-secondary-color hover:!bg-secondary-color font-semibold rounded-2xl mt-8"
+                  className="w-full py-6 border border-[#FE5C8E] hover:border-[#FE5C8E] text-xl text-primary-color bg-[#FE5C8E] hover:!bg-[#FE5C8E] font-semibold rounded-2xl mt-8"
                   htmlType="submit"
                 >
                   Update password
