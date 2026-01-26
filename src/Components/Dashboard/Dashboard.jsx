@@ -80,7 +80,7 @@ const Dashboard = () => {
                 </div>
                 <div className="text-start">
                   <p className="text-xs lg:text-base xl:text-2xl text-[#000] mb-1">
-                    Total customer
+                    Total Customers
                   </p>
                   <p className="text-sm lg:text-base xl:text-3xl font-medium text-[#000]">
                     {allCustomer?.data?.allCustomerCount}
@@ -96,7 +96,7 @@ const Dashboard = () => {
                 </div>
                 <div className="text-start">
                   <p className="text-xs lg:text-sm xl:text-2xl text-[#000] mb-1">
-                    Total Business
+                    Total Businesses
                   </p>
                   <p className="text-sm lg:text-base xl:text-3xl font-medium text-[#000]">
                     {allCustomer?.data?.allBusinessCount}

@@ -70,12 +70,12 @@ const DashboardLayout = () => {
     {
       key: "users",
       icon: <img src={user} alt="dashboard" width={20} />,
-      label: <NavLink to="users">User</NavLink>,
+      label: <NavLink to="users">User List</NavLink>,
     },
     {
       key: "business",
       icon: <img src={business} alt="dashboard" width={20} />,
-      label: <NavLink to="business">Business</NavLink>,
+      label: <NavLink to="business">Business List</NavLink>,
     },
     {
       key: "services",
@@ -90,7 +90,7 @@ const DashboardLayout = () => {
     {
       key: "earning",
       icon: <img src={income} alt="earning" width={16} height={16} />,
-      label: <NavLink to="earning">Earning</NavLink>,
+      label: <NavLink to="earning">Earnings</NavLink>,
     },
     // {
     //   key: "earning",
