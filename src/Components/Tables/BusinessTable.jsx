@@ -30,7 +30,7 @@ const BusinessTable = ({ data, loading, pageSize = 0 }) => {
         types && Array.isArray(types) && types.length > 0 ? (
           <>
             {types.map((type, index) => (
-              <Tag color="#000" key={index}>
+              <Tag  key={index}>
                 {type}
               </Tag>
             ))}
