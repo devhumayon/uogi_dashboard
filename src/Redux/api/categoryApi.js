@@ -36,6 +36,8 @@ const categoryApi = baseApi.injectEndpoints({
       invalidatesTags: ["category"],
     }),
 
+   
+
     // Edit category
     editCategory: builder.mutation({
       query: ({ id, data }) => {
@@ -102,6 +104,22 @@ const categoryApi = baseApi.injectEndpoints({
       invalidatesTags: ["subcategory"],
     }),
 
+     // move  sub category
+    moveSubCategory: builder.mutation({
+      query: (data) => {
+        const accessToken = localStorage.getItem("accessToken");
+        return {
+          url: "/sub-category/move",
+          method: "POST",
+          body: data,
+          headers: {
+            authorization: `Bearer ${accessToken}`,
+          },
+        };
+      },
+      invalidatesTags: ["category"],
+    }),
+
     // Edit subcategory
     editSubcategory: builder.mutation({
       query: ({ subcategoryId, data }) => {
@@ -150,4 +168,5 @@ export const {
   useAddSubcategoryMutation,
   useEditSubcategoryMutation,
   useDeleteSubcategoryMutation,
+  useMoveSubCategoryMutation
 } = categoryApi;

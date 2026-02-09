@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, ConfigProvider, Modal, Input, Popconfirm } from "antd";
+import { Button, ConfigProvider, Modal, Input, Popconfirm, Select } from "antd";
 import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { getImageUrl } from "../../../utils/baseUrl";
 import {
@@ -11,9 +11,11 @@ import {
   useDeleteSubcategoryMutation,
   useAllCategoryQuery,
   useEditSubcategoryMutation,
+  useMoveSubCategoryMutation,
 } from "../../../Redux/api/categoryApi";
 import ManageCategoryModal from "../../UI/ManageCategoryModal";
 import { toast } from "sonner";
+import { FiMove } from "react-icons/fi";
 
 const CategoryDetails = () => {
   const navigate = useNavigate();
@@ -55,6 +57,8 @@ const CategoryDetails = () => {
 
   const [addSubcategory, { isLoading: isAddingSubcategory }] =
     useAddSubcategoryMutation();
+  const [moveSubcategory, { isLoading: isMovingSubcategory }] =
+    useMoveSubCategoryMutation();
   const [editSubcategory, { isLoading: isEditingSubcategory }] =
     useEditSubcategoryMutation();
   const [deleteSubcategory] = useDeleteSubcategoryMutation();
@@ -70,18 +74,32 @@ const CategoryDetails = () => {
   const [subcategoryName, setSubcategoryName] = useState("");
   const [isEditSubcategoryModalOpen, setIsEditSubcategoryModalOpen] =
     useState(false);
+  const [isMoveModalOpen, setIsMoveModalOpen] =
+    useState(false);
   const [currentSubcategory, setCurrentSubcategory] = useState(null);
   const [newSubcategoryName, setNewSubcategoryName] = useState("");
+  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+
 
   // Edit Modal Handlers
   const showEditModal = () => {
     setIsEditModalOpen(true);
   };
 
+  const moveCategoryModal = (subcategory) => {
+    setNewSubcategoryName(subcategory); // Pre-fill the modal with current name
+    setIsMoveModalOpen(true);    
+  };
+
   const showEditSubcategoryModal = (subcategory) => {
     setCurrentSubcategory(subcategory);
     setNewSubcategoryName(subcategory.subCategoryname); // Pre-fill the modal with current name
     setIsEditSubcategoryModalOpen(true);
+  };
+
+  const handleMoveSubcategoryCancel = () => {
+    setIsMoveModalOpen(false);
+    setNewSubcategoryName(""); // Clear the input
   };
 
   const handleEditSubcategoryCancel = () => {
@@ -186,6 +204,44 @@ const CategoryDetails = () => {
       toast.success("Subcategory updated successfully!");
       refetchSubcategories();
       handleEditSubcategoryCancel(); // Close the modal
+    } catch (error) {
+      toast.error(error?.data?.message || "Failed to update subcategory");
+      console.error(error);
+    }
+  };
+
+
+  const handleCategoryChange = (value) => {
+  console.log("Selected Category ID:", value);
+  setSelectedCategoryId(value);
+};
+
+
+  const handleMoveSubcategorySubmit = async (id) => {
+    console.log('subcategory***', newSubcategoryName)
+    console.log('selectedCategoryId***', selectedCategoryId)
+
+    // const subcategoryId = currentSubcategory._id || currentSubcategory.id;
+    console.log('subcategoryId***', id)
+
+    if (!selectedCategoryId) {
+    toast.error("Please select a category");
+    return;
+  }
+
+  const data = {
+    subCategoryId: id,
+    categoryId: selectedCategoryId
+  }
+
+    try {
+      const response = await moveSubcategory(data).unwrap();
+
+      console.log("move sub", response);
+
+      toast.success("Subcategory move successfully!");
+      refetchSubcategories();
+      handleMoveSubcategoryCancel(); // Close the modal
     } catch (error) {
       toast.error(error?.data?.message || "Failed to update subcategory");
       console.error(error);
@@ -350,6 +406,13 @@ const CategoryDetails = () => {
                         Delete
                       </Button>
                     </Popconfirm>
+                     <Button
+                      type="text"
+                      icon={<FiMove />}
+                      onClick={() => moveCategoryModal(item)} // Show the modal when editing
+                    >
+                      Move
+                    </Button>
                   </div>
                 </div>
               ))}
@@ -521,6 +584,93 @@ const CategoryDetails = () => {
             onChange={(e) => setNewSubcategoryName(e.target.value)}
             placeholder="Enter new subcategory name"
           />
+        </Modal>
+      </ConfigProvider>
+
+      {/* move model  */}
+      <ConfigProvider
+        theme={{
+          components: {
+            Modal: {
+              contentBg: "#FEF2F5",
+              headerBg: "#FEF2F5",
+            },
+            Input: {
+              activeBorderColor: "rgb(254,51,114)",
+              hoverBorderColor: "rgb(254,51,114)",
+            },
+          },
+        }}
+      >
+
+        <Modal
+          title="Move Subcategory"
+          open={isMoveModalOpen}
+          onCancel={handleMoveSubcategoryCancel}
+          footer={[
+            <ConfigProvider
+              key="footer-config"
+              theme={{
+                components: {
+                  Button: {
+                    defaultBg: "#FFFFFF",
+                    defaultColor: "rgb(254,51,114)",
+                    defaultBorderColor: "rgb(254,51,114)",
+                    defaultHoverBg: "#FEF2F5",
+                    defaultHoverColor: "rgb(254,51,114)",
+                  },
+                },
+              }}
+            >
+              <Button key="cancel" onClick={handleMoveSubcategoryCancel}>
+                Cancel
+              </Button>
+            </ConfigProvider>,
+            <ConfigProvider
+              key="submit-config"
+              theme={{
+                components: {
+                  Button: {
+                    defaultBg: "rgb(254,51,114)",
+                    defaultColor: "rgb(255,255,255)",
+                    defaultHoverBg: "rgb(188,33,82)",
+                    defaultHoverColor: "rgb(255,255,255)",
+                  },
+                },
+              }}
+            >
+              <Button
+                key="submit"
+                type="primary"
+                onClick={() => handleMoveSubcategorySubmit(newSubcategoryName?._id)}
+                // loading={isEditingSubcategory}
+              >
+                Moved
+              </Button>
+            </ConfigProvider>,
+          ]}
+        >
+          
+          <p className="mb-4"><span className="font-semibold" >SubCategory :</span> {newSubcategoryName?.subCategoryname || "N/A"}</p>
+
+          <div>
+            <p><span className="font-semibold">Selected Category</span></p>
+            <Select
+            showSearch
+            style={{ width: "100%" }}
+            placeholder="Select a category"
+            optionFilterProp="children"
+            onChange={handleCategoryChange}
+            filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
+          >
+            {categoriesData?.map((category) => (
+              <Select.Option key={category?._id}  value={category?._id}>
+                {category?.name}
+              </Select.Option>
+            ))}
+          </Select>
+          </div>
+         
         </Modal>
       </ConfigProvider>
     </div>
