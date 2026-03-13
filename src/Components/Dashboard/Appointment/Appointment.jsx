@@ -6,7 +6,6 @@ import { SearchOutlined } from "@ant-design/icons";
 
 const Appointment = () => {
   const [searchText, setSearchText] = useState("");
-  //* Use to set user
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
