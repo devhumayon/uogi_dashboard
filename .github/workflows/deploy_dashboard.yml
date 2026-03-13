@@ -55,8 +55,10 @@ jobs:
 
           # Start or reload with PM2
           ssh $EC2_USER@$EC2_HOST "
-            cd ~/uogi_dashboard
-            # Reload if already running, otherwise start
-            pm2 describe dashboard >/dev/null 2>&1 && pm2 reload dashboard || pm2 start npm --name 'dashboard' -- run preview
-            pm2 save
+          cd ~/uogi_dashboard
+          # Install PM2 globally if not installed
+          command -v pm2 >/dev/null 2>&1 || npm install -g pm2
+          # Reload if already running, otherwise start
+          pm2 describe dashboard >/dev/null 2>&1 && pm2 reload dashboard || pm2 start npm --name 'dashboard' -- run preview
+          pm2 save
           "

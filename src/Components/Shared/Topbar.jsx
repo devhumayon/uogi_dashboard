@@ -44,9 +44,6 @@ const Topbar = ({ collapsed, setCollapsed }) => {
   const imageUrl = getImageUrl();
  
 
-  // const handleMenuClick = () => {
-  //   setNotificationCount(0); // Reset notification count when the menu is clicked
-  // };
 
   // const notificationMenu = (
   //   <div
