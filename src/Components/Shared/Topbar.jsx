@@ -42,9 +42,7 @@ const Topbar = ({ collapsed, setCollapsed }) => {
 
   const user = userProfile?.data;
   const imageUrl = getImageUrl();
-  // const [notificationCount, setNotificationCount] = useState(
-  //   notifications.length
-  // );
+ 
 
   // const handleMenuClick = () => {
   //   setNotificationCount(0); // Reset notification count when the menu is clicked

@@ -1,4 +1,4 @@
-name: Build and Deploy React Dashboard
+name: Build and Deploy Vite Dashboard
 
 on:
   push:
@@ -10,20 +10,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout the repository
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      # 2️⃣ Setup Node.js
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
+      # 3️⃣ Install dependencies
       - name: Install Dependencies
         run: npm install
 
-      - name: Build React App
+      # 4️⃣ Build Vite app
+      - name: Build Vite App
         run: npm run build
 
+      # 5️⃣ Setup SSH
       - name: Configure SSH
         env:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
@@ -33,6 +38,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
 
+      # 6️⃣ Deploy to EC2 and run with PM2
       - name: Deploy to EC2
         env:
           EC2_HOST: ${{ secrets.EC2_HOST }}
@@ -41,22 +47,16 @@ jobs:
           # Create deployment folder
           ssh $EC2_USER@$EC2_HOST "mkdir -p ~/uogi_dashboard"
 
-          # Copy build files
+          # Sync the dist folder to EC2
           rsync -avz --delete \
             --exclude='.git' \
             --exclude='node_modules' \
             dist/ $EC2_USER@$EC2_HOST:~/uogi_dashboard
 
-          # Start dashboard with PM2
-          ssh $EC2_USER@$EC2_HOST " \
-            export NVM_DIR=\$HOME/.nvm && \
-            [ -s \$NVM_DIR/nvm.sh ] && . \$NVM_DIR/nvm.sh && \
-            cd ~/uogi_dashboard && \
-            npm install -g serve && \
-            pm2 delete uogi_dashboard || true && \
-            pm2 start npm --name 'uogi_dashboard' -- run preview && \
-            pm2 save \
+          # Start or reload with PM2
+          ssh $EC2_USER@$EC2_HOST "
+            cd ~/uogi_dashboard
+            # Reload if already running, otherwise start
+            pm2 describe dashboard >/dev/null 2>&1 && pm2 reload dashboard || pm2 start npm --name 'dashboard' -- run preview
+            pm2 save
           "
-
-
-
