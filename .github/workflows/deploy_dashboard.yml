@@ -1,0 +1,51 @@
+name: Build and Deploy React Dashboard
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build React App
+        run: npm run build
+
+      - name: Configure SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to EC2
+        env:
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          EC2_USER: ${{ secrets.EC2_USER }}
+        run: |
+          # Create deployment folder
+          ssh $EC2_USER@$EC2_HOST "mkdir -p ~/uogi_dashboard"
+
+          # Copy build files
+          rsync -avz --delete \
+            --exclude=".git" \
+            --exclude="node_modules" \
+            build/ $EC2_USER@$EC2_HOST:~/uogi_dashboard
+
+          # Restart nginx (if needed)
+          ssh $EC2_USER@$EC2_HOST "sudo systemctl restart nginx"
