@@ -47,15 +47,7 @@ const Topbar = ({ collapsed, setCollapsed }) => {
 
 
  
-   // <div className="flex gap-2">
-  //           <BellFilled style={{ color: "#FF9500" }} />
-  //           <div className="flex flex-col items-start">
-  //             <p>{notification.message}</p>
-  //             <p className="text-gray-400">{notification.time}</p>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     ))}
+
   //     <Link
   //       to={"/notifications"}
   //       className="w-2/3 mx-auto bg-secondary-color !text-primary-color rounded h-8 py-1"
