@@ -71,11 +71,7 @@ const Dashboard = () => {
             <div className="flex gap-5 flex-wrap rounded-lg bg-[#FEF2F5] border border-[#F05C8E] py-2 px-1 lg:p-5 items-center flex-1">
               <div className="flex gap-2 xl:gap-4 items-center">
                 <div className="p-3 w-fit">
-                  {/* <img
-                    src={AllIcons.person}
-                    className="h-10 w-10 text-[#000]"
-                    alt=""
-                  /> */}
+                  
                   <UserAddOutlined className="text-5xl" />
                 </div>
                 <div className="text-start">
