@@ -54,6 +54,14 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
 
+      - name: Write .env on EC2
+        env:
+          APP_ENV: ${{ secrets.APP_ENV }}
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          EC2_USER: ${{ secrets.EC2_USER }}
+        run: |
+          ssh $EC2_USER@$EC2_HOST "echo '$APP_ENV' > ~/uogi_dashboard/.env"
+
       - name: Deploy to EC2
         env:
           EC2_HOST: ${{ secrets.EC2_HOST }}
@@ -75,6 +83,7 @@ jobs:
           # pm2 delete করে নতুন করে start করো (নতুন config নেওয়ার জন্য)
           ssh $EC2_USER@$EC2_HOST 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && cd ~/uogi_dashboard && pm2 delete dashboard || true'
 
+          # pm2 start with env
           ssh $EC2_USER@$EC2_HOST 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && cd ~/uogi_dashboard && pm2 start npm --name "dashboard" -- run preview'
 
           # pm2 save
