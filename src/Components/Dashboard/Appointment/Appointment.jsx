@@ -10,7 +10,6 @@ const Appointment = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  //* It's Use to Show Modal
 
   useEffect(() => {
     const fetchData = async () => {
