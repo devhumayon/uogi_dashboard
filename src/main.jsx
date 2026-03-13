@@ -6,6 +6,8 @@ import { Provider } from "react-redux";
 import { store } from "./Redux/store.js";
 import { Toaster } from "sonner";
 
+
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <Toaster position="top-right" richColors />

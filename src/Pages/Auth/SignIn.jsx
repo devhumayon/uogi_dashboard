@@ -10,6 +10,9 @@ const SignIn = () => {
   const navigate = useNavigate();
   const [login] = useSignInMutation();
 
+  
+  // console.log(import.meta.env.REACT_APP_BASE_URL);
+
   const onFinish = async (values) => {
     const data = {
       email: values.email,
