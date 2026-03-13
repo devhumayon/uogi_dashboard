@@ -98,44 +98,52 @@
 name: Deploy React (Vite) Dashboard
 
 on:
- push:
-  branches:
-  - main
+  push:
+    branches:
+    - main
 
 jobs:
- deploy:
-  runs-on: ubuntu-latest
+  deploy:
+      runs-on: ubuntu-latest
+
+      steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Project
+        run: npm run build
+
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy build to EC2
+        run: |
+          rsync -avz --delete dist/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:~/uogi_dashboard/dist
+
+      - name: Start app with PM2
+        run: |
+          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} '
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+            npm install -g pm2 serve || true
+
+            pm2 delete dashboard || true
+            pm2 start "serve -s dist -l 3001" --name dashboard
+            pm2 save
+          '
 
 
-  steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
-
-    - name: Setup Node
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
-
-    - name: Install Dependencies
-      run: npm install
-
-    - name: Build Project
-      run: npm run build
-
-    - name: Configure SSH
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
-
-    - name: Deploy to EC2
-      run: |
-        rsync -avz --delete dist/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:~/uogi_dashboard/dist
-
-    - name: Restart PM2
-      run: |
-        ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "pm2 delete dashboard || true"
-        ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "pm2 start 'serve -s dist -l 3001' --name dashboard"
-        ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "pm2 save"
 

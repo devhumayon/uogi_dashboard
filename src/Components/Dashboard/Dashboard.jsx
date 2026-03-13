@@ -25,9 +25,6 @@ const Dashboard = () => {
   const userData = allUsers?.data;
   console.log(userData);
 
-  // console.log(allCustomer?.data);
-
-  //* It's Use to Show Modal
   const [isViewModalVisible, setIsViewModalVisible] = useState(false);
 
   //* It's Use to Show Delete Modal
