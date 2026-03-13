@@ -52,17 +52,7 @@ const Topbar = ({ collapsed, setCollapsed }) => {
         />
       </div>
       <div className="flex items-center justify-center  mr-5">
-        {/* <Dropdown
-          overlay={notificationMenu}
-          trigger={["click"]}
-          placement="bottomRight"
-        >
-          <BellFilled
-            shape="circle"
-            size="small"
-            className="bg-[#F7F5F5] py-4 px-2 rounded shadow h-6 text-base font-bold text-[#FF9500]"
-          />
-        </Dropdown> */}
+      
         <Link
           to="profile"
           className="flex items-center justify-center gap-2 bg-transparent text-base-color border-0 rounded-lg h-8 px-2 py-1  mr-5"
