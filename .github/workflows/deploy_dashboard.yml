@@ -13,11 +13,9 @@ jobs:
 
       - name: Setup Node
         uses: actions/setup-node@v4
-        with:
-          node-version: 20
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install --frozen-lockfile
 
       - name: Build Dashboard
         run: npm run build
@@ -39,24 +37,30 @@ jobs:
           EC2_HOST: ${{ secrets.EC2_HOST }}
           EC2_USER: ${{ secrets.EC2_USER }}
         run: |
-          # dist/ এখন এই same job-এ আছে, তাই rsync কাজ করবে
-          rsync -avz --delete dist/ $EC2_USER@$EC2_HOST:~/uogi_dashboard/
+          # package.json + dist/ দুটোই copy করো
+          rsync -avz --delete dist/ $EC2_USER@$EC2_HOST:~/uogi_dashboard/dist/
+          rsync -avz package.json $EC2_USER@$EC2_HOST:~/uogi_dashboard/
 
-          # EC2-তে pm2 setup করো
-          ssh $EC2_USER@$EC2_HOST "
-            # pm2 না থাকলে install করো
-            command -v pm2 || npm install -g pm2
+          ssh $EC2_USER@$EC2_HOST bash << 'EOF'
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+            export PATH=$PATH:/usr/local/bin:/usr/bin
+
+            command -v npm || { echo "ERROR: npm not found. Install Node.js on EC2 first!"; exit 1; }
 
             cd ~/uogi_dashboard
 
-            # serve package দিয়ে static files serve করো
-            npm install -g serve 2>/dev/null || true
+            # node_modules না থাকলে install করো
+            [ -d "node_modules" ] || npm install
+
+            command -v pm2 || npm install -g pm2
 
             # pm2 reload অথবা নতুন start
-            pm2 describe dashboard > /dev/null 2>&1 \
-              && pm2 reload dashboard \
-              || pm2 start serve --name 'dashboard' -- -s /home/$USER/uogi_dashboard -l 3000
+            if pm2 describe dashboard > /dev/null 2>&1; then
+              pm2 reload dashboard
+            else
+              pm2 start npm --name 'dashboard' -- run preview
+            fi
 
             pm2 save
-            pm2 startup | tail -1 | bash || true
-          "
+          EOF

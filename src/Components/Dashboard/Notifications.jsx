@@ -47,7 +47,6 @@ const Notifications = () => {
               <FiBell className="text-secondary-color w-6 h-6" />
             </div>
 
-            {/* Notification text */}
             <div className="flex flex-col">
               <span className="text-lg font-medium text-gray-700">
                 {notification.message}
