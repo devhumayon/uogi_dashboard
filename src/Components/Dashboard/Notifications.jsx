@@ -42,7 +42,6 @@ const Notifications = () => {
             key={notification.id}
             className="flex items-center space-x-3 p-2 border-b border-gray-300 last:border-none"
           >
-            {/* Icon */}
             <div className="bg-input-color p-2 rounded-full">
               <FiBell className="text-secondary-color w-6 h-6" />
             </div>
