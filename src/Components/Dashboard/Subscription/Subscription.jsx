@@ -10,7 +10,6 @@ import {
 } from "antd";
 import { useState } from "react";
 import { GoPlus } from "react-icons/go";
-// import addSubs from "../../../../public/images/";
 import { MdOutlineDone } from "react-icons/md";
 
 export default function Subscription() {

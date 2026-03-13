@@ -1,48 +1,141 @@
-name: Build and Deploy React Dashboard
+# name: Build and Deploy React (Vite) Dashboard
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v4
+
+#       - name: Install Node JS
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 20
+
+#       - name: Check Node version
+#         run: node -v
+
+#       - name: Install Dependencies
+#         run: npm install --frozen-lockfile
+
+#       - name: Build Dashboard
+#         run: npm run build
+
+#       - name: Check build folder
+#         run: ls -la dist/
+
+#   deploy:
+#     runs-on: ubuntu-latest
+#     needs: build
+#     steps:
+#       - uses: actions/checkout@v4
+
+#       - name: Install Node JS
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 20
+
+#       - name: Install Dependencies
+#         run: npm install --frozen-lockfile
+
+#       - name: Build Dashboard
+#         run: npm run build
+
+#       - name: Configure SSH
+#         env:
+#           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+#         run: |
+#           mkdir -p ~/.ssh/
+#           echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+#           chmod 600 ~/.ssh/id_rsa
+#           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
+#       - name: Write .env on EC2
+#         env:
+#           APP_ENV: ${{ secrets.APP_ENV }}
+#           EC2_HOST: ${{ secrets.EC2_HOST }}
+#           EC2_USER: ${{ secrets.EC2_USER }}
+#         run: |
+#           ssh $EC2_USER@$EC2_HOST "mkdir -p ~/uogi_dashboard && cat > ~/uogi_dashboard/.env <<EOF
+#           APP_ENV=${APP_ENV}
+#           EOF"
+
+#       - name: Deploy to EC2
+#         env:
+#           EC2_HOST: ${{ secrets.EC2_HOST }}
+#           EC2_USER: ${{ secrets.EC2_USER }}
+#         run: |
+#           ssh $EC2_USER@$EC2_HOST "mkdir -p ~/uogi_dashboard"
+
+#           # Copy necessary files (dist/, package.json, vite.config.js)
+#           rsync -avz --delete \
+#             --exclude='.git' \
+#             --exclude='node_modules' \
+#             --exclude='.github' \
+#             --exclude='src' \
+#             --exclude='.env' \
+#             . $EC2_USER@$EC2_HOST:~/uogi_dashboard/
+
+#           # Install node_modules on EC2
+#           ssh $EC2_USER@$EC2_HOST 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && cd ~/uogi_dashboard && npm install --frozen-lockfile'
+
+#           # Delete old pm2 process if exists
+#           ssh $EC2_USER@$EC2_HOST 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && pm2 delete dashboard || true'
+
+#           # Start React Vite app with pm2
+#           ssh $EC2_USER@$EC2_HOST 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && cd ~/uogi_dashboard && pm2 start npm --name "dashboard" -- run preview'
+
+#           # Save pm2 process list
+#           ssh $EC2_USER@$EC2_HOST 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && pm2 save'
+
+
+
+
+name: Deploy React (Vite) Dashboard
 
 on:
-  push:
-    branches:
-    - main
+ push:
+  branches:
+  - main
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+ deploy:
+  runs-on: ubuntu-latest
 
 
-    steps:
-          - name: Checkout Code
-            uses: actions/checkout@v4
+  steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
 
-          - name: Setup Node
-            uses: actions/setup-node@v4
-            with:
-              node-version: 20
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
 
-          - name: Install Dependencies
-            run: npm install
+    - name: Install Dependencies
+      run: npm install
 
-          - name: Build Project
-            run: npm run build
+    - name: Build Project
+      run: npm run build
 
-          - name: Deploy to Server
-            uses: appleboy/scp-action@v0.1.7
-            with:
-              host: ${{ secrets.SERVER_HOST }}
-              username: ${{ secrets.SERVER_USER }}
-              key: ${{ secrets.SERVER_SSH_KEY }}
-              source: "dist"
-              target: "/var/www/uogi_dashboard"
+    - name: Configure SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
 
-          - name: Restart App with PM2
-            uses: appleboy/ssh-action@v1.0.3
-            with:
-              host: ${{ secrets.SERVER_HOST }}
-              username: ${{ secrets.SERVER_USER }}
-              key: ${{ secrets.SERVER_SSH_KEY }}
-              script: |
-                cd /var/www/uogi_dashboard
-                pm2 delete dashboard || true
-                pm2 start "serve -s dist -l 3001" --name dashboard
-                pm2 save
+    - name: Deploy to EC2
+      run: |
+        rsync -avz --delete dist/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:~/uogi_dashboard/dist
+
+    - name: Restart PM2
+      run: |
+        ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "pm2 delete dashboard || true"
+        ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "pm2 start 'serve -s dist -l 3001' --name dashboard"
+        ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "pm2 save"
 
