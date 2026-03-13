@@ -46,10 +46,7 @@ const Topbar = ({ collapsed, setCollapsed }) => {
 
 
 
-  //     className="flex flex-col gap-4 w-full text-center bg-white p-4 rounded-lg"
-  //     onClick={handleMenuClick}
-  //     style={{ boxShadow: "0px 0px 5px 2px #00000040" }}
-  //   >
+ 
   //     {notifications.map((notification) => (
   //       <div className="test-start" key={notification.id}>
   //         <div className="flex gap-2">
