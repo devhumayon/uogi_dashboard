@@ -41,7 +41,6 @@ const EditProfile = () => {
       const file = info.fileList[0].originFileObj;
       if (file) {
         setImageFile(file);
-        // Create a preview URL for the image
         const reader = new FileReader();
         reader.onload = (e) => {
           setImageUrl(e.target.result);

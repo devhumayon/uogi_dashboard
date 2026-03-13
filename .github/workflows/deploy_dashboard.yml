@@ -54,10 +54,9 @@ jobs:
             cd ~/uogi_dashboard && \
             npm install -g serve && \
             pm2 delete uogi_dashboard || true && \
-            pm2 start 'serve -s . -l 3000' --name uogi_dashboard && \
+            pm2 start npm --name 'uogi_dashboard' -- run preview && \
             pm2 save \
           "
 
 
 
-          
