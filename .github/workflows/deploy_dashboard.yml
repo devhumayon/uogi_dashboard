@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,19 +17,13 @@ jobs:
           node-version: 20
 
       - name: Install Dependencies
-        run: npm install --frozen-lockfile
+        run: npm ci
 
       - name: Build Dashboard
         run: npm run build
 
       - name: Check build folder
         run: ls -la dist/
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - uses: actions/checkout@v4
 
       - name: Configure SSH
         env:
@@ -45,16 +39,24 @@ jobs:
           EC2_HOST: ${{ secrets.EC2_HOST }}
           EC2_USER: ${{ secrets.EC2_USER }}
         run: |
+          # dist/ এখন এই same job-এ আছে, তাই rsync কাজ করবে
+          rsync -avz --delete dist/ $EC2_USER@$EC2_HOST:~/uogi_dashboard/
+
+          # EC2-তে pm2 setup করো
           ssh $EC2_USER@$EC2_HOST "
-            # Make sure deployment folder exists
-            mkdir -p ~/uogi_dashboard
+            # pm2 না থাকলে install করো
+            command -v pm2 || npm install -g pm2
 
-            # Copy built dashboard
-            rsync -avz --delete $GITHUB_WORKSPACE/dist/ ~/uogi_dashboard/
+            cd ~/uogi_dashboard
 
-            # Stop PM2 if running
-            pm2 describe dashboard >/dev/null 2>&1 && pm2 reload dashboard || pm2 start npm --name 'dashboard' -- run preview
+            # serve package দিয়ে static files serve করো
+            npm install -g serve 2>/dev/null || true
 
-            # Save PM2 process list
+            # pm2 reload অথবা নতুন start
+            pm2 describe dashboard > /dev/null 2>&1 \
+              && pm2 reload dashboard \
+              || pm2 start serve --name 'dashboard' -- -s /home/$USER/uogi_dashboard -l 3000
+
             pm2 save
+            pm2 startup | tail -1 | bash || true
           "

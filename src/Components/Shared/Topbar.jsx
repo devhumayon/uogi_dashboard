@@ -42,20 +42,7 @@ const Topbar = ({ collapsed, setCollapsed }) => {
 
   const user = userProfile?.data;
   const imageUrl = getImageUrl();
- 
 
-
-
- 
-
-  //     <Link
-  //       to={"/notifications"}
-  //       className="w-2/3 mx-auto bg-secondary-color !text-primary-color rounded h-8 py-1"
-  //     >
-  //       See More
-  //     </Link>
-  //   </div>
-  // );
   return (
     <div className="py-2 mx-[-45px]  flex justify-between items-center bg-[#FFFFFF] pt-4">
       <div className="flex items-center gap-2 text-base-color ml-4 ">
