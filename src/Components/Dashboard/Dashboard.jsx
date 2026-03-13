@@ -33,7 +33,6 @@ const Dashboard = () => {
   //* It's Use to Show Delete Modal
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
 
-  //* It's Use to Set Seclected User to delete and view
   const [currentRecord, setCurrentRecord] = useState(null);
 
   const showViewModal = (record) => {
