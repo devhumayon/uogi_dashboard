@@ -59,23 +59,23 @@ jobs:
           EC2_HOST: ${{ secrets.EC2_HOST }}
           EC2_USER: ${{ secrets.EC2_USER }}
         run: |
-          # deployment folder তৈরি করো
           ssh $EC2_USER@$EC2_HOST "mkdir -p ~/uogi_dashboard"
 
-          # dist/ + package.json copy করো
+          # dist/ + package.json + vite.config.js সব copy করো
           rsync -avz --delete \
             --exclude='.git' \
             --exclude='node_modules' \
             --exclude='.github' \
-            dist/ $EC2_USER@$EC2_HOST:~/uogi_dashboard/dist/
+            --exclude='src' \
+            . $EC2_USER@$EC2_HOST:~/uogi_dashboard/
 
-          rsync -avz package.json $EC2_USER@$EC2_HOST:~/uogi_dashboard/
-
-          # node_modules install + pm2 start
+          # node_modules install
           ssh $EC2_USER@$EC2_HOST 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && cd ~/uogi_dashboard && npm install --frozen-lockfile'
 
-          # pm2 reload অথবা নতুন start
-          ssh $EC2_USER@$EC2_HOST 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && cd ~/uogi_dashboard && pm2 describe dashboard > /dev/null 2>&1 && pm2 reload dashboard || pm2 start npm --name "dashboard" -- run preview'
+          # pm2 delete করে নতুন করে start করো (নতুন config নেওয়ার জন্য)
+          ssh $EC2_USER@$EC2_HOST 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && cd ~/uogi_dashboard && pm2 delete dashboard || true'
+
+          ssh $EC2_USER@$EC2_HOST 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && cd ~/uogi_dashboard && pm2 start npm --name "dashboard" -- run preview'
 
           # pm2 save
           ssh $EC2_USER@$EC2_HOST 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && pm2 save'

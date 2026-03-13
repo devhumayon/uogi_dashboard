@@ -40,7 +40,6 @@ const Business = () => {
     );
   }
 
-  // Show error message if fetch fails
   if (fetchError) {
     return (
       <div className="text-white">
