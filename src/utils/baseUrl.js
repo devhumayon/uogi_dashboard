@@ -7,5 +7,4 @@ export const  getBaseUrl = () => {
 export const getImageUrl = () => {
   // return "http://10.10.7.65:8075";
   return process.env.REACT_APP_IMAGE_URL;
-  // return "http://localhost:5000/";
 };

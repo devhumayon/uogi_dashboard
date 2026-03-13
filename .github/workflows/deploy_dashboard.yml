@@ -45,7 +45,23 @@ jobs:
           rsync -avz --delete \
             --exclude=".git" \
             --exclude="node_modules" \
-            build/ $EC2_USER@$EC2_HOST:~/uogi_dashboard
+            dist/ $EC2_USER@$EC2_HOST:~/uogi_dashboard
 
-          # Restart nginx (if needed)
-          ssh $EC2_USER@$EC2_HOST "sudo systemctl restart nginx"
+          # Start dashboard with PM2
+          ssh $EC2_USER@$EC2_HOST '
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+            cd ~/uogi_dashboard
+
+            # install serve if not installed
+            npm install -g serve
+
+            # stop old process
+            pm2 delete uogi_dashboard || true
+
+            # start react build
+            pm2 start "serve -s . -l 3000" --name uogi_dashboard
+
+            pm2 save
+          
