@@ -221,7 +221,6 @@ const CategoryDetails = () => {
     console.log('subcategory***', newSubcategoryName)
     console.log('selectedCategoryId***', selectedCategoryId)
 
-    // const subcategoryId = currentSubcategory._id || currentSubcategory.id;
     console.log('subcategoryId***', id)
 
     if (!selectedCategoryId) {
@@ -241,7 +240,7 @@ const CategoryDetails = () => {
 
       toast.success("Subcategory move successfully!");
       refetchSubcategories();
-      handleMoveSubcategoryCancel(); // Close the modal
+      handleMoveSubcategoryCancel(); 
     } catch (error) {
       toast.error(error?.data?.message || "Failed to update subcategory");
       console.error(error);

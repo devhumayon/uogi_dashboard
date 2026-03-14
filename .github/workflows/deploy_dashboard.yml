@@ -108,6 +108,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Create .env file
+        run: |
+          echo "${{ secrets.APP_ENV }}" > .env
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -118,10 +122,6 @@ jobs:
 
       - name: Build Project
         run: npm run build
-
-      - name: Create .env file
-        run: |
-          echo "${{ secrets.APP_ENV }}" > .env
 
       - name: Upload project to VPS
         uses: appleboy/scp-action@v0.1.7
@@ -151,4 +151,5 @@ jobs:
             pm2 start npm --name "dashboard" -- run preview
 
             pm2 save
+
             
