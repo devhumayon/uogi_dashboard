@@ -40,13 +40,13 @@ export default function Subscription() {
     },
   ]);
   const [form] = Form.useForm();
-  const [featureList, setFeatureList] = useState([{ feature: "" }]); // Initial feature
-  const [activeKey, setActiveKey] = useState([0]); // Track the active panel
+  const [featureList, setFeatureList] = useState([{ feature: "" }]); 
+  const [activeKey, setActiveKey] = useState([0]); 
 
   const handleAddQus = () => {
-    const newfeatureList = [...featureList, { feature: "" }]; // Add new feature
+    const newfeatureList = [...featureList, { feature: "" }]; 
     setFeatureList(newfeatureList);
-    setActiveKey([newfeatureList.length - 1]); // Set the new panel as active
+    setActiveKey([newfeatureList.length - 1]); 
   };
 
   const handleFeatureChange = (index, value) => {

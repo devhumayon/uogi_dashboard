@@ -93,21 +93,19 @@
 #           ssh $EC2_USER@$EC2_HOST 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && pm2 save'
 
 
-
-
 name: Deploy React (Vite) Dashboard
 
 on:
   push:
     branches:
-    - main
+      - main
 
 jobs:
-  deploy:
-      runs-on: ubuntu-latest
+  build-and-deploy:
+    runs-on: ubuntu-latest
 
-      steps:
-      - name: Checkout Code
+    steps:
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Setup Node
@@ -121,29 +119,35 @@ jobs:
       - name: Build Project
         run: npm run build
 
-      - name: Configure SSH
+      - name: Create .env file
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+          echo "${{ secrets.APP_ENV }}" > .env
 
-      - name: Deploy build to EC2
-        run: |
-          rsync -avz --delete dist/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:~/uogi_dashboard/dist
+      - name: Upload files to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          source: "."
+          target: "/home/${{ secrets.EC2_USER }}/uogi_dashboard"
 
-      - name: Start app with PM2
-        run: |
-          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} '
-            export NVM_DIR="$HOME/.nvm"
-            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+      - name: Restart app with PM2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/${{ secrets.EC2_USER }}/uogi_dashboard
 
-            npm install -g pm2 serve || true
+            npm install
+
+            npm install -g pm2
 
             pm2 delete dashboard || true
-            pm2 start "serve -s dist -l 3001" --name dashboard
+
+            pm2 start npm --name "dashboard" -- run preview
+
             pm2 save
-          '
-
-
-
+            
