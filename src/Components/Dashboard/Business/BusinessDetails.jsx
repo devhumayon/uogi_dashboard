@@ -356,7 +356,6 @@ const BusinessDetails = () => {
           </div>
 
           <div className="lg:w-1/3">
-            {/* Stats Card */}
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-pink-100 p-6 mb-6">
               <h3 className="text-xl font-bold text-gray-900 mb-6">
                 Business Stats
