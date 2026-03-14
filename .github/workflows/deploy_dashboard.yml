@@ -148,8 +148,7 @@ jobs:
 
             pm2 delete dashboard || true
 
-            pm2 start npm --name "dashboard" -- run preview
+            pm2 start npm --name "uogi_dashboard" -- run preview
 
             pm2 save
 
-            
