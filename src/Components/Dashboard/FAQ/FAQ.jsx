@@ -8,42 +8,36 @@ const { Panel } = Collapse;
 
 const FAQ = () => {
   const editor = useRef(null);
-  // State to hold the FAQ list and active panel key
-  const [faqList, setFaqList] = useState([{ question: "", answer: "" }]); // Initial Q/A pair
-  const [activeKey, setActiveKey] = useState([0]); // Track the active panel
+  const [faqList, setFaqList] = useState([{ question: "", answer: "" }]);
+  const [activeKey, setActiveKey] = useState([0]);
 
-  // Function to save all Q/A pairs
   const handleOnSave = () => {
-    console.log(faqList); // This will log all Q/A pairs
+    console.log(faqList);
   };
 
-  // Function to add a new Q/A pair
   const handleAddQus = () => {
-    const newFaqList = [...faqList, { question: "", answer: "" }]; // Add new Q/A pair
+    const newFaqList = [...faqList, { question: "", answer: "" }]; 
     setFaqList(newFaqList);
-    setActiveKey([newFaqList.length - 1]); // Set the new panel as active
+    setActiveKey([newFaqList.length - 1]); 
   };
 
-  // Function to update question text
   const handleQuestionChange = (index, value) => {
     const newFaqList = [...faqList];
     newFaqList[index].question = value;
     setFaqList(newFaqList);
   };
 
-  // Function to update answer text
   const handleAnswerChange = (index, value) => {
     const newFaqList = [...faqList];
     newFaqList[index].answer = value;
     setFaqList(newFaqList);
   };
 
-  // Function to remove a Q/A pair
   const handleRemoveQus = (index) => {
     if (faqList.length > 1) {
-      const newFaqList = faqList.filter((_, i) => i !== index); // Remove the item at the given index
+      const newFaqList = faqList.filter((_, i) => i !== index); 
       setFaqList(newFaqList);
-      setActiveKey([Math.max(0, index - 1)]); // Set the previous panel as active or default to the first one
+      setActiveKey([Math.max(0, index - 1)]); 
     }
   };
 
@@ -55,7 +49,6 @@ const FAQ = () => {
             FAQ
           </h1>
         </div>
-        {/* Q/A Portions */}
         <ConfigProvider
           theme={{
             components: {
@@ -164,5 +157,4 @@ const FAQ = () => {
   );
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
 export default FAQ;
