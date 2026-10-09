@@ -1,12 +1,11 @@
 [
   {
-    "relation": [
-      "delegate_permission/common.handle_all_urls"
-    ],
+    "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
       "package_name": "com.beautybooking.uogi",
       "sha256_cert_fingerprints": [
+        "06:82:23:C5:25:B1:EA:9A:C8:56:4A:74:96:FD:3D:84:F3:94:F6:2B:B3:65:85:DE:CF:E4:25:25:2D:00:E2:8B",
         "AF:C2:0C:F0:64:91:AF:69:73:19:A4:E7:33:37:C6:52:29:56:E5:FD:F7:1B:25:8A:F0:96:83:ED:7D:F4:10:03"
       ]
     }
